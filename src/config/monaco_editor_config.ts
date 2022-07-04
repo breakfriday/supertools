@@ -26,5 +26,6 @@ import {
       quickSuggestions: true,
       suggestOnTriggerCharacters: true,
     };
+    
   }
   
