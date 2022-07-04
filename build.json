@@ -1,0 +1,49 @@
+{
+    "vite": false,
+    "outputDir":"build",
+    "outputAssetsPath": {
+      "js": "build/js",
+      "css": "build/css"
+    },
+    "publicPath": "https://cdn.zcycdn.com/",
+    "hash": false,
+ 
+    "lessLoaderOptions": {
+      "javascriptEnabled": true
+    },
+ 
+    "plugins": [
+      [
+        "build-plugin-icestark",
+        {
+          "type": "framework"
+        }
+      ],
+      [
+        "build-plugin-fusion",
+        {
+          "disableModularImport": true,
+          "themePackage": "@alifd/theme-design-pro",
+          "themeConfig": {
+            "css-prefix": "next-icestark-"
+          }
+        }
+      ],
+      [
+        "build-plugin-moment-locales",
+        {
+          "locales": [
+            "zh-cn"
+          ]
+        }
+      ],
+      [
+        "build-plugin-ignore-style",
+        {
+          "libraryName": "@alifd/next"
+        }
+      ],
+      "build-plugin-smart-debug"
+    ]
+  }
+  
