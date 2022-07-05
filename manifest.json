@@ -1,40 +1,39 @@
 {
-    "name": "super_proxy",
-    "description": "继承mock 接口 资源 模块 远程调试的调试开发插件",
-    "short_name": "xs",
-    "version": "1.17.1",
-    "manifest_version": 2,
-    "browser_action": {
-      "default_icon": "images/grey_128.png",
-      "default_title": "XSwitch",
-      "default_popup": "XSwitch.html"
-    },
-    "permissions": [
-        "file:///*",
-        "http://*/*",
-        "https://*/*",
-      "webRequest",
-      "storage",
-      "webRequestBlocking",
-      "browsingData",
-      "<all_urls>"
-    ],
-    "icons": {
-      "48": "images/grey_128.png",
-      "128": "images/grey_128.png"
-    },
-    "commands": {
-      "_execute_browser_action": {
-        "suggested_key": {
-          "windows": "Ctrl+Shift+X",
-          "mac": "Command+Shift+X",
-          "default": "Ctrl+Shift+X"
-        }
+  "name": "super_proxy",
+  "description": "继承mock 接口 资源 模块 远程调试的调试开发插件",
+  "short_name": "xs",
+  "version": "1.17.1",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": "images/grey_128.png",
+    "default_title": "app",
+    "default_popup": "app.html"
+  },
+  "permissions": [
+      "file:///*",
+      "http://*/*",
+      "https://*/*",
+    "webRequest",
+    "storage",
+    "webRequestBlocking",
+    "browsingData",
+    "<all_urls>"
+  ],
+  "icons": {
+    "48": "images/grey_128.png",
+    "128": "images/grey_128.png"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "windows": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X",
+        "default": "Ctrl+Shift+X"
       }
-    },
-    "options_page": "options.html",
-    "background": {
-      "scripts": ["background.min.js"]
     }
+  },
+  "options_page": "app.html",
+  "background": {
+    "scripts": ["./js/background.js"]
   }
-  
+}
