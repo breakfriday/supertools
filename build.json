@@ -2,10 +2,10 @@
     "vite": false,
     "outputDir":"build",
     "outputAssetsPath": {
-      "js": "build/js",
-      "css": "build/css"
+      "js": "js",
+      "css": "css"
     },
-    "publicPath": "/",
+    "publicPath": "./",
     "hash": false,
  
     "lessLoaderOptions": {
