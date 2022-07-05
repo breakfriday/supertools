@@ -11,11 +11,14 @@ export function openLink(url: string, isInner = false): void {
 }
 
 const Home = () => {
-  return (<div onClick={() => {
-    openLink(POPUP_HTML_PATH, true);
-  }}
-  >this is the test
-  </div>);
+  return (
+    <div onClick={() => {
+      openLink(POPUP_HTML_PATH, true);
+    }}
+    >
+      this is the test
+
+    </div>);
 };
 
 export default Home;
