@@ -1,6 +1,12 @@
 {
     "vite": false,
     "outputDir":"build",
+    "entry": {
+      "background": "src/background",
+      "app": "src/app"
+      
+     
+    },
     "outputAssetsPath": {
       "js": "js",
       "css": "css"
