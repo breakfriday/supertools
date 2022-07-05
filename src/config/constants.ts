@@ -83,6 +83,7 @@ export const RULE_COMPLETION = `[
     "\${1:to}",
   ],`;
 
+
 export const DEFAULT_DATA = `{
     // Use IntelliSense to learn about possible links.
     // Type \`rule\` to quick insert rule.
