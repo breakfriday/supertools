@@ -1,15 +1,18 @@
 {
-  "name": "super_devtools",
-  "description": "super_devtools",
-  "short_name": "super_devtools",
-  "version": "0.0.1",
-  "manifest_version": 1,
+  "name": "super_proxy",
+  "description": "继承mock 接口 资源 模块 远程调试的调试开发插件",
+  "short_name": "xs",
+  "version": "1.17.1",
+  "manifest_version": 2,
   "browser_action": {
     "default_icon": "images/grey_128.png",
-    "default_title": "super_devtools",
+    "default_title": "app",
     "default_popup": "app.html"
   },
   "permissions": [
+      "file:///*",
+      "http://*/*",
+      "https://*/*",
     "webRequest",
     "storage",
     "webRequestBlocking",
@@ -29,7 +32,8 @@
       }
     }
   },
+  "options_page": "app.html",
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["./js/background.js"]
   }
 }
