@@ -1,11 +1,9 @@
-import React from 'react';
+import { runApp, IAppConfig } from 'ice';
 
-function App() {
-  return (
-    <div>
-      App
-    </div>
-  );
-}
+const appConfig: IAppConfig = {
+  app: {
+    rootId: 'ice-container',
+  },
+};
 
-export default App;
+runApp(appConfig);

@@ -5,7 +5,7 @@
       "js": "build/js",
       "css": "build/css"
     },
-    "publicPath": "https://cdn.zcycdn.com/",
+    "publicPath": "/",
     "hash": false,
  
     "lessLoaderOptions": {
@@ -42,8 +42,7 @@
         {
           "libraryName": "@alifd/next"
         }
-      ],
-      "build-plugin-smart-debug"
+      ]
     ]
   }
   
