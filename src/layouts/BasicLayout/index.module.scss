@@ -1,0 +1,19 @@
+.grid_wrapper {
+    display: grid;
+    /*  声明列的宽度  */
+    grid-template-columns: 200px 1fr ;
+    /*  声明行间距和列间距  */
+    grid-gap: 20px;
+    /*  声明行的高度  */
+    grid-template-rows: 40px 1fr;
+      grid-auto-flow: row;
+      
+  }
+
+  .head{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    border: 1px solid red;
+  }
+  
+  
