@@ -1,0 +1,35 @@
+{
+  "name": "super_devtools",
+  "description": "super_devtools",
+  "short_name": "super_devtools",
+  "version": "0.0.1",
+  "manifest_version": 1,
+  "browser_action": {
+    "default_icon": "images/grey_128.png",
+    "default_title": "super_devtools",
+    "default_popup": "app.html"
+  },
+  "permissions": [
+    "webRequest",
+    "storage",
+    "webRequestBlocking",
+    "browsingData",
+    "<all_urls>"
+  ],
+  "icons": {
+    "48": "images/grey_128.png",
+    "128": "images/grey_128.png"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "windows": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X",
+        "default": "Ctrl+Shift+X"
+      }
+    }
+  },
+  "background": {
+    "scripts": ["background.js"]
+  }
+}
