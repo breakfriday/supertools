@@ -82,6 +82,16 @@ export default function BasicLayout({
             }}
           >super_tooles
           </div>
+
+          <div className={styles['right_button']}>
+            <img
+              className={styles['full_img']}
+              onClick={() => {
+                openLink(POPUP_HTML_PATH, true);
+              }}
+              src="https://sitecdn.zcycdn.com/f2e-assets/7646233b-f378-4b21-8567-21e0130bf4da.png"
+            />
+          </div>
         </div>
         <div className={styles['menu_box']}>
           <PageNav />
