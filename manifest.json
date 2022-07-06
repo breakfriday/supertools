@@ -19,6 +19,7 @@
     "browsingData",
     "<all_urls>"
   ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "icons": {
     "48": "images/grey_128.png",
     "128": "images/grey_128.png"

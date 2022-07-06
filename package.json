@@ -18,6 +18,9 @@
   "scripts": {
     "start": "icejs start",
     "build": "icejs build",
+    "build:chrome_dev_host": "icejs build --mode local && cp -rf ./src/images  manifest.json build",
+    "build:chrome_dev": "icejs build && cp -rf ./src/images  manifest.json build",
+    "build:chrome_pro": "icejs build && cp -rf ./src/images  manifest.json build",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx ./",
     "eslint:fix": "npm run eslint -- --fix",

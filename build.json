@@ -13,6 +13,14 @@
     },
     "publicPath": "./",
     "hash": false,
+
+    "modeConfig": {
+      "local": {
+        "hash": false,
+        "publicPath": "http://10.201.111.203:3333"
+      }
+
+    },
  
     "lessLoaderOptions": {
       "javascriptEnabled": true
