@@ -17,7 +17,7 @@
     "modeConfig": {
       "local": {
         "hash": false,
-        "publicPath": "http://10.201.111.203:3333"
+        "publicPath": "https://10.201.111.203:3333"
       }
 
     },

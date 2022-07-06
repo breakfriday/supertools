@@ -19,11 +19,12 @@
     "browsingData",
     "<all_urls>"
   ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_security_policy": "script-src https://10.201.111.203:3333/ 'self' 'unsafe-eval'; object-src 'self'",
   "icons": {
     "48": "images/grey_128.png",
     "128": "images/grey_128.png"
   },
+  "devtools_page": "app.html",
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {

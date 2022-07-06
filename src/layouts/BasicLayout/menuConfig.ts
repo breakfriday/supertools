@@ -32,11 +32,11 @@ const asideMenuConfig = [
     children: [
       {
         name: '埋点验收',
-        path: '/remote',
+        path: '/remote3',
       },
       {
         name: '埋点查看',
-        path: '/remote2',
+        path: '/remote4',
       },
     ],
   },

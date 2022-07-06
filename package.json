@@ -16,7 +16,7 @@
     "standalone.js"
   ],
   "scripts": {
-    "start": "icejs start",
+    "start": "icejs start --https",
     "build": "icejs build",
     "build:chrome_dev_host": "icejs build --mode local && cp -rf ./src/images  manifest.json build",
     "build:chrome_dev": "icejs build && cp -rf ./src/images  manifest.json build",
