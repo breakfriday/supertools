@@ -1,0 +1,16 @@
+.grid_wrapper {
+    display: grid;
+    /*  声明列的宽度  */
+    grid-template-columns: 150px 1fr ;
+    /*  声明行间距和列间距  */
+
+    /*  声明行的高度  */
+    grid-template-rows: 1fr;
+    grid-auto-flow: row;
+    height: 100%;
+      
+  }
+
+  .menu_box{
+    border-right: 1px solid #e8e8e8;
+  }

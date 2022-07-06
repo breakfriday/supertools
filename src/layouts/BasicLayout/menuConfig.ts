@@ -25,19 +25,34 @@ const asideMenuConfig = [
       },
     ],
   },
-
-
   {
-    name: '登录&注册',
+    name: '数据埋点',
     path: '/',
     icon: '',
     children: [
       {
-        name: '登录',
+        name: '埋点验收',
+        path: '/remote',
+      },
+      {
+        name: '埋点查看',
+        path: '/remote2',
+      },
+    ],
+  },
+
+
+  {
+    name: '其他',
+    path: '/',
+    icon: '',
+    children: [
+      {
+        name: '标尺测量',
         path: '/user/login',
       },
       {
-        name: '注册',
+        name: '截图工具',
         path: '/user/register',
       },
     ],
