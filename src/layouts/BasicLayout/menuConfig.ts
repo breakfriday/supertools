@@ -5,7 +5,7 @@ const asideMenuConfig = [
   {
     name: 'mock代理',
     path: '/',
-    icon: 'copy',
+    icon: '',
     children: [
       {
         name: '场景',
@@ -17,7 +17,7 @@ const asideMenuConfig = [
   {
     name: '远程调试',
     path: '/',
-    icon: 'chart-bar',
+    icon: '',
     children: [
       {
         name: 'remote_proxy',
@@ -30,7 +30,7 @@ const asideMenuConfig = [
   {
     name: '登录&注册',
     path: '/',
-    icon: 'account',
+    icon: '',
     children: [
       {
         name: '登录',

@@ -5,7 +5,6 @@ import { getLocale } from '@/utils/locale';
 
 // 脏代码，待mpa
 try {
-  
   chrome.devtools.panels.create('super_tools', 'images/grey_128.png', 'app.html', (panel) => {
 
   });

@@ -3,6 +3,10 @@ import { Shell, ConfigProvider } from '@alifd/next';
 import PageNav from './components/PageNav';
 import styles from './index.module.scss';
 
+import { openLink } from '@/utils/index';
+
+import { POPUP_HTML_PATH } from '@/config/constants';
+
 
 (function () {
   const throttle = function (type: string, name: string, obj: Window = window) {
@@ -70,8 +74,16 @@ export default function BasicLayout({
         className={styles['grid_wrapper']}
 
       >
-        <div className={styles.head}>asdfasdf</div>
-        <div>
+        <div className={styles.head}>
+          <div
+            className={styles.title}
+            onClick={() => {
+              openLink(POPUP_HTML_PATH, true);
+            }}
+          >super_tooles
+          </div>
+        </div>
+        <div className={styles['menu_box']}>
           <PageNav />
         </div>
 
