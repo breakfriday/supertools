@@ -32,11 +32,11 @@ const asideMenuConfig = [
     children: [
       {
         name: '埋点验收',
-        path: '/remote3',
+        path: '/check_data_tracking',
       },
       {
         name: '埋点查看',
-        path: '/remote4',
+        path: '/data_tracking',
       },
     ],
   },
@@ -49,11 +49,11 @@ const asideMenuConfig = [
     children: [
       {
         name: '标尺测量',
-        path: '/user/login',
+        path: '/ruler',
       },
       {
         name: '截图工具',
-        path: '/user/register',
+        path: '/screenshots',
       },
     ],
   },
