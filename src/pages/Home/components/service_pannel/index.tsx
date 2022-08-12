@@ -79,6 +79,14 @@ function ServicePannel() {
           </FormItem>
 
 
+          <FormItem
+            name="api_alias_name"
+            label="mock 地址"
+
+          >
+            <Input />
+          </FormItem>
+
         </Form>
       </Dialog>
     </div>
