@@ -50,7 +50,7 @@ function AssetsPannel() {
         className={styles['table_box']}
         emptyContent={<EmptyBlock />}
       >
-        <Table.Column title="模块名称" dataIndex="module_name" />
+        <Table.Column title="前端资源" dataIndex="module_name" />
         <Table.Column title="本地服务" dataIndex="proxy_url" />
         <Table.Column title="操作" dataIndex="time" />
       </Table>
@@ -73,24 +73,24 @@ function AssetsPannel() {
       >
         <Form field={field_form} {...formItemLayout} colon>
           <FormItem
-            label="模块名称"
+            label="前端资源"
             required
 
           >
             <Input
-              name="module_name"
-              placeholder="模块名"
+              name="assets_url"
+              placeholder=" "
               {...field_form.init('module_name', {
 
               })}
             />
           </FormItem>
           <FormItem
-            label="本地服务"
+            label="替换内容"
           >
             <Input
-              name="proxy_url"
-              placeholder="https://localhost/${modulename}"
+              name="proxy_assets_url"
+              placeholder="https://localhost/${name}/js/index.js"
               {...field_form.init('proxy_url', {
 
               })}
