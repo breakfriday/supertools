@@ -20,12 +20,15 @@ function ModulePannel() {
 
   const [module_list_state, set_module_list_state] = useState([]);
 
-  const field_form = Field.useField();
+  const field_form = Field.useField([]);
 
 
   const add_item = () => {
-    field_form.validate((values) => {
-      alert(JSON.stringify(values));
+    field_form.validate((error, values) => {
+      const old_data = Object.assign([], module_list_state);
+      old_data.push(values);
+      set_module_list_state(old_data);
+      set_api_rule_dialog_state(false);
     });
   };
 
@@ -47,7 +50,7 @@ function ModulePannel() {
         className={styles['table_box']}
         emptyContent={<EmptyBlock />}
       >
-        <Table.Column title="模块名称" dataIndex="modue_name" />
+        <Table.Column title="模块名称" dataIndex="module_name" />
         <Table.Column title="本地服务" dataIndex="proxy_url" />
         <Table.Column title="操作" dataIndex="time" />
       </Table>
@@ -64,8 +67,11 @@ function ModulePannel() {
         onClose={() => {
           set_api_rule_dialog_state(false);
         }}
+        onOk={(parm) => {
+          add_item();
+        }}
       >
-        <Form {...formItemLayout} field={field_form} colon>
+        <Form field={field_form} {...formItemLayout} colon>
           <FormItem
             label="模块名称"
             required
