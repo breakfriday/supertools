@@ -4,6 +4,7 @@ import { IRouterConfig, lazy } from 'ice';
 import Home from '@/pages/Home';
 import UserLayout from '@/layouts/UserLayout';
 import BasicLayout from '@/layouts/BasicLayout';
+import NotFound from './components/NotFound';
 
 const routerConfig: IRouterConfig[] = [
   {
@@ -11,10 +12,17 @@ const routerConfig: IRouterConfig[] = [
     component: BasicLayout,
     children: [
       {
-        path: '/',
+        path: '/scence',
         component: Home,
       }],
   },
+  {
+    component: NotFound,
+    pageConfig: {
+      title: '',
+    },
+  },
+
 
 ];
 
