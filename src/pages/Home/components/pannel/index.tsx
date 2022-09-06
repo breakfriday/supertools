@@ -12,10 +12,13 @@ function Pannel() {
         <Tab.Item title="服务接口代理" key="1" >
           <ServicePannel />
         </Tab.Item>
-        <Tab.Item title="前端资源配置" key="2" >
+        <Tab.Item title="前端资源代理" key="2" >
           <AssetsPannel />
         </Tab.Item>
         <Tab.Item title="模块组件代理" key="3" >
+          <ModulePannel />
+        </Tab.Item>
+        <Tab.Item title="资源注入" key="4" >
           <ModulePannel />
         </Tab.Item>
       </Tab>
