@@ -91,3 +91,11 @@ class ForwardService {
     return this.redirectToMatchingRule(details);
   }
 }
+
+
+if (!window._forward) {
+  window._forward = new ForwardService();
+}
+
+export default window._forward;
+

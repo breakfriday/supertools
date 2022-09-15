@@ -1,1 +1,1 @@
-import forward from './forward';
+import forward from './foward-service';

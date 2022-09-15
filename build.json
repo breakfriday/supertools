@@ -2,7 +2,7 @@
     "vite": false,
     "outputDir":"build",
     "entry": {
-      "background": "src/background",
+      "background": "src/background/index",
       "app": "src/app"
       
      
