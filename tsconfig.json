@@ -22,7 +22,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
-    "types": ["node"],
+    "types": ["node","chrome"],
     "paths": {
       "@/*": ["./src/*"],
       "ice": [".ice"]
