@@ -269,28 +269,28 @@
 //   ['responseHeaders', 'blocking'],
 // );
 
-let rules = [];
-chrome.storage.local.get(['rules'], (data) => {
-  rules = JSON.parse(data.rules) || [];
-});
-chrome.storage.onChanged.addListener((changes) => {
-  const { newValue } = JSON.parse(changes.rules);
-  rules = newValue;
-});
+// let rules = [];
+// chrome.storage.local.get(['rules'], (data) => {
+//   rules = JSON.parse(data.rules) || [];
+// });
+// chrome.storage.onChanged.addListener((changes) => {
+//   const { newValue } = JSON.parse(changes.rules);
+//   rules = newValue;
+// });
 
-chrome.webRequest.onBeforeRequest.addListener(
-  ({ url }) => {
-    const rule = rules.find((rule) => url.startsWith(rule.url));
-    if (rule) {
-      return {
-        redirectUrl: url.replace(rule.url, rule.proxy),
-      };
-    }
-  },
-  {
-    urls: ['<all_urls>'],
-    types: ['xmlhttprequest'],
-  },
-  ['blocking'],
-);
+// chrome.webRequest.onBeforeRequest.addListener(
+//   ({ url }) => {
+//     const rule = rules.find((rule) => url.startsWith(rule.url));
+//     if (rule) {
+//       return {
+//         redirectUrl: url.replace(rule.url, rule.proxy),
+//       };
+//     }
+//   },
+//   {
+//     urls: ['<all_urls>'],
+//     types: ['xmlhttprequest'],
+//   },
+//   ['blocking'],
+// );
 
