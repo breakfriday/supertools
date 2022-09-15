@@ -1,24 +1,20 @@
-const REG = {
-  TRIM_JSON: /(,+)([^a-z0-9["])/gi,
-  CHROME_EXTENSION: /^chrome-extension:\/\//i,
-  // support [ ] ( ) \ * ^ $
-  FORWARD: /\\|\[|]|\(|\)|\*|\$|\^/i,
-  WHITESPACE: /\s+/g,
-  X_HEADER: /^x-/,
-};
+
+
+import { REGEXP_LIST } from './constant';
+
 export enum UrlType {
-  REG1 = 'reg',
+  REG = 'reg',
   STRING = 'string',
 }
 
 
 const matchUrl = (url: string, reg: string): string | boolean => {
-  if (REG.FORWARD.test(reg)) {
+  if (REGEXP_LIST.FORWARD.test(reg)) {
     // support ??
     const r = new RegExp(reg.replace('??', '\\?\\?'), 'i');
     const matched = r.test(url);
     if (matched) {
-      return UrlType.REG1;
+      return UrlType.REG;
     }
   } else {
     const matched = url.indexOf(reg) > -1;
@@ -36,6 +32,12 @@ class ForwardService {
   get urls(): string[] {
     return this._urls;
   }
+  get config(): IFowardConfig {
+    return this._config;
+  }
+  set config(newValue: IFowardConfig) {
+    this._config = { ...newValue };
+  }
 
   redirectToMatchingRule(
     details: chrome.webRequest.WebRequestHeadersDetails,
@@ -44,7 +46,7 @@ class ForwardService {
     let redirectUrl: string = details.url;
 
     // in case of chrome-extension downtime
-    if (!rules || !rules.length || REG.CHROME_EXTENSION.test(redirectUrl)) {
+    if (!rules || !rules.length || REGEXP_LIST.CHROME_EXTENSION.test(redirectUrl)) {
       return {};
     }
 
@@ -64,7 +66,7 @@ class ForwardService {
           const matched = matchUrl(redirectUrl, reg);
 
           if (details.requestId !== this._lastRequestId) {
-            if (matched === UrlType.REG1) {
+            if (matched === UrlType.REG) {
               const r = new RegExp(reg.replace('??', '\\?\\?'), 'i');
               redirectUrl = redirectUrl.replace(r, rule[1]);
             } else if (matched === UrlType.STRING) {

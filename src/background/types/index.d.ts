@@ -1,5 +1,5 @@
-export enum UrlType {
-  REG = 'reg',
-  STRING = 'string',
-}
 
+interface IFowardConfig {
+  proxy?: string[][];
+  cors?: string[];
+}
