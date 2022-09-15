@@ -9,5 +9,11 @@ const REGEXP_LIST = {
   X_HEADER: /^x-/,
 };
 
+export const ALL_URLS = '<all_urls>';
 
-export { REGEXP_LIST };
+export const BLOCKING = 'blocking';
+
+export const DISABLED = 'disabled';
+
+export const MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
+
