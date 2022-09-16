@@ -22,6 +22,10 @@ const clearCacheEnabled = true;
 //   }
 // }
 
+chrome.storage.onChanged.addListener((changes) => {
+  
+})
+
 chrome.webRequest.onBeforeRequest.addListener(
   (details) => {
     if (forward[DISABLED] !== Enabled.NO) {

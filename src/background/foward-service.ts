@@ -8,6 +8,15 @@ export enum UrlType {
 }
 
 
+const config_rules = {
+  proxy: [
+    [
+      'https://dev.zcycdn.com/web-cs-robot-front/cs-robot/umi.(.*).js', // https://www.sample.com/path1/path2/index.js
+      'https://localhost:8000/cs-robot/umi.js', // http://127.0.0.1:3000/index.js
+    ],
+  ],
+};
+
 const matchUrl = (url: string, reg: string): string | boolean => {
   if (REGEXP_LIST.FORWARD.test(reg)) {
     // support ??
@@ -29,7 +38,9 @@ const matchUrl = (url: string, reg: string): string | boolean => {
 class ForwardService {
   private _urls: string[] = new Array(200); // for cache_rules
   private _lastRequestId: string | null = null;
-  private _config: IFowardConfig = {};
+  private _config: IFowardConfig = {
+    proxy: config_rules.proxy,
+  };
 
   get urls(): string[] {
     return this._urls;
