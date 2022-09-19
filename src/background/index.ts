@@ -1,5 +1,5 @@
 import forward from './foward-service';
-import { ALL_URLS, BLOCKING, DISABLED, MILLISECONDS_PER_WEEK } from './constant';
+import { ALL_URLS, BLOCKING, DISABLED } from './constant';
 
 import { Enabled } from './esum';
 
@@ -22,9 +22,6 @@ const clearCacheEnabled = true;
 //   }
 // }
 
-chrome.storage.onChanged.addListener((changes) => {
-  
-})
 
 chrome.webRequest.onBeforeRequest.addListener(
   (details) => {
@@ -43,3 +40,17 @@ chrome.webRequest.onBeforeRequest.addListener(
   [BLOCKING],
 );
 
+
+// chrome.webRequest.onBeforeRequest.addListener(
+//   (details) => {
+//     debugger;
+
+//     console.log(22);
+
+
+//     return {};
+//   },
+//   { urls: ['<all_urls>'],
+//   },
+//   ['blocking'],
+// );

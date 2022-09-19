@@ -38,9 +38,7 @@ const matchUrl = (url: string, reg: string): string | boolean => {
 class ForwardService {
   private _urls: string[] = new Array(200); // for cache_rules
   private _lastRequestId: string | null = null;
-  private _config: IFowardConfig = {
-    proxy: config_rules.proxy,
-  };
+  private _config: IFowardConfig = {};
 
   get urls(): string[] {
     return this._urls;

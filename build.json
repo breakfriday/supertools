@@ -26,6 +26,8 @@
     "lessLoaderOptions": {
       "javascriptEnabled": true
     },
+    "polyfill":false,
+    "minify":false,
  
     "plugins": [
       [
