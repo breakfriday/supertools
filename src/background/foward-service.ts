@@ -76,27 +76,6 @@ class ForwardService {
     }
 
 
-    // try {
-    //   for (let i = 0; i < rules.length; i++) {
-    //     const rule = rules[i];
-    //     if (rule && rule[0] && typeof rule[1] === 'string') {
-    //       const reg = rule[0];
-    //       const matched = matchUrl(redirectUrl, reg);
-
-    //       if (details.requestId !== this._lastRequestId) {
-    //         if (matched === UrlType.REG) {
-    //           const r = new RegExp(reg.replace('??', '\\?\\?'), 'i');
-    //           redirectUrl = redirectUrl.replace(r, rule[1]);
-    //         } else if (matched === UrlType.STRING) {
-    //           redirectUrl = redirectUrl.split(rule[0]).join(rule[1]);
-    //         }
-    //       }
-    //     }
-    //   }
-    // } catch (e) {
-    //   console.error('rule match error', e);
-    // }
-
     this._lastRequestId = details.requestId;
     return redirectUrl === details.url ? {} : { redirectUrl };
   }
@@ -117,7 +96,7 @@ if (!window._forward) {
 window._forward.config = {
   proxy: new Map([
     [
-      'https://dev.zcycdn.com/web-cs-robot-front/cs-robot/umi.(.*).js', // https://www.sample.com/path1/path2/index.js
+      'https://dev.zcycdn.com/web-cs-robot-front/cs-robot/umi.(.*).js', // https://dev.zcycdn.com/web-cs-robot-front/cs-robot/umi.(.*).js
       'https://localhost:8000/cs-robot/umi.js', // http://127.0.0.1:3000/index.js
     ],
   ]),
