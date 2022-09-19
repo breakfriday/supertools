@@ -57,7 +57,7 @@ class ForwardService {
     let redirectUrl: string = details.url;
 
     // in case of chrome-extension downtime
-    if (!rules || !rules.length || REGEXP_LIST.CHROME_EXTENSION.test(redirectUrl)) {
+    if (!rules || !rules.size || REGEXP_LIST.CHROME_EXTENSION.test(redirectUrl)) {
       return {};
     }
 

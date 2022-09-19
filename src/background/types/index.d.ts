@@ -1,5 +1,5 @@
 
 interface IFowardConfig {
-  proxy?: string[][];
+  proxy?: Map;
   cors?: string[];
 }
