@@ -126,9 +126,9 @@ if (!window._forward) {
 }
 
 
-// window._forward.config = {
-//   proxy: config_rules.proxy,
-// };
+window._forward.config = {
+  proxy: config_rules.proxy,
+};
 
 
 export default window._forward;
