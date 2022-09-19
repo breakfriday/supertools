@@ -106,5 +106,11 @@ if (!window._forward) {
   window._forward = new ForwardService();
 }
 
+
+// window._forward.config = {
+//   proxy: config_rules.proxy,
+// };
+
+
 export default window._forward;
 
