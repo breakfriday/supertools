@@ -1,10 +1,10 @@
 {
     "vite": false,
     "outputDir":"build",
+    "vendor":false,
     "entry": {
-      "background": "src/background/index",
-      "app": "src/app"
-      
+      "app": "src/app",
+      "background": "src/background/index"
      
     },
     "outputAssetsPath": {
