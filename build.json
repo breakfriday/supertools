@@ -31,6 +31,13 @@
  
     "plugins": [
       [
+        "build-plugin-css-assets-local",
+        {
+          "outputPath": "assets_resource",
+          "relativeCssPath": "../"
+        }
+      ],
+      [
         "build-plugin-icestark",
         {
           "type": "framework"
