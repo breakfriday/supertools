@@ -28,7 +28,7 @@ const Home = () => {
             type="primary"
             className={styles['button1']}
             onClick={() => {
-              invoke_service.pri_test()
+              invoke_service.pri_test({})
               set_show_scense_dialog_state(true);
             }}
           >添加场景
