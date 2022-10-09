@@ -17,6 +17,11 @@ const invoke_service = {
     }
   },
 
+  open_db: () => {
+
+  },
+
+
 };
 
 
