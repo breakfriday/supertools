@@ -1,4 +1,6 @@
 
+import dbService from '@/controller/db_service';
+
 let background_service: BackgoundInterface = {};
 
 try {
@@ -18,7 +20,7 @@ const invoke_service = {
   },
 
   open_db: () => {
-
+    dbService.create_db('aa');
   },
 
 
