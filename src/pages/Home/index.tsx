@@ -4,6 +4,7 @@ import styles from './index.module.scss';
 import Pannel from './components/pannel';
 import react, { useEffect, useState } from 'react';
 import { Button, Box, Dialog, Form, Input, Checkbox } from '@alifd/next';
+import { invoke_service } from '@/actions';
 
 const FormItem = Form.Item;
 
@@ -27,6 +28,7 @@ const Home = () => {
             type="primary"
             className={styles['button1']}
             onClick={() => {
+              invoke_service.pri_test()
               set_show_scense_dialog_state(true);
             }}
           >添加场景

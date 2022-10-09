@@ -41,6 +41,10 @@ chrome.webRequest.onBeforeRequest.addListener(
 );
 
 
+window.pro_test = () => {
+  console.log('this is the test');
+};
+
 // chrome.webRequest.onBeforeRequest.addListener(
 //   (details) => {
 //     debugger;

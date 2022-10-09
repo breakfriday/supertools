@@ -3,5 +3,6 @@ interface Window {
   editor: any;
   monaco: any;
   _forward: any;
+  pro_test: any;
 }
 
