@@ -2,6 +2,11 @@ import { SCENSE_TABLE_NAME } from '@/background/constant';
 import db_service from './db_service';
 
 class ScenseService extends db_service {
+  constructor() {
+    super();
+    this.create_db('local_db');
+  }
+
   create_scense() {
     this.create_db('local_db');
   }
@@ -16,6 +21,22 @@ class ScenseService extends db_service {
 
   delete_scense() {
 
+  }
+  get_all_scense() {
+    const { db } = this;
+
+    const objectStore = db.transaction([SCENSE_TABLE_NAME]).objectStore(SCENSE_TABLE_NAME); // 事
+    const list = [];
+
+    objectStore.openCursor().onsuccess = (event) => {
+      const cursor = event.target.result;
+      if (cursor) {
+        list.push(cursor.value);
+        cursor.continue();
+      } else {
+        console.log('没有更多数据了！');
+      }
+    };
   }
 }
 

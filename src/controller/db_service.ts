@@ -1,7 +1,20 @@
+import { SCENSE_TABLE_NAME } from '@/background/constant';
+
 class DbService {
   private request_db;
-  private db: any= {};
+  //   private db: any= {};
 
+  //   get _db() {
+  //     return this.db;
+  //   }
+  //   set _db(db) {
+  //     this.db = db;
+  //   }
+
+  constructor() {
+    // this.db = {};
+    console.log('----');
+  }
 
   create_db(dbName, version = 1) {
     // 打开数据库，若没有则会创建

@@ -30,6 +30,10 @@ const invoke_service = {
     // dbService.addData(SCENSE_TABLE_NAME, data);
   },
 
+  get_scence_list: () => {
+    background_page.ScenseService.get_all_scense();
+  },
+
 
 };
 

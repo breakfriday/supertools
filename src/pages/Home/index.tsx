@@ -21,6 +21,10 @@ const formItemLayout = {
 const Home = () => {
   const [show_scense_dialog_state, set_show_scense_dialog_state] = useState(false);
   const scense_form_field = Field.useField();
+
+  useEffect(() => {
+    invoke_service.get_scence_list();
+  }, []);
   return (
     <div className={styles['grid_wrapper']} >
       <div className={styles['menu_box']}>
