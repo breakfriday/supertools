@@ -28,7 +28,7 @@ class DbService {
   /**
    * 获取store
    */
-  async _getObjectStore(storeName, version) {
+  async _getObjectStore(storeName) {
     const transaction = await this._getTransaction(storeName);
     return transaction.objectStore(storeName);
   }

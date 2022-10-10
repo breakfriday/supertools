@@ -22,10 +22,11 @@ class ScenseService extends db_service {
   delete_scense() {
 
   }
-  get_all_scense() {
+  async get_all_scense() {
     const { db } = this;
 
-    const objectStore = db.transaction([SCENSE_TABLE_NAME]).objectStore(SCENSE_TABLE_NAME); // 事
+    // const objectStore = db.transaction([SCENSE_TABLE_NAME]).objectStore(SCENSE_TABLE_NAME); // 事
+    const objectStore = await this._getObjectStore(SCENSE_TABLE_NAME);
     const list = [];
 
     objectStore.openCursor().onsuccess = (event) => {
