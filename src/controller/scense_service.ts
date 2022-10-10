@@ -29,15 +29,18 @@ class ScenseService extends db_service {
     const objectStore = await this._getObjectStore(SCENSE_TABLE_NAME);
     const list = [];
 
-    objectStore.openCursor().onsuccess = (event) => {
-      const cursor = event.target.result;
-      if (cursor) {
-        list.push(cursor.value);
-        cursor.continue();
-      } else {
-        console.log('没有更多数据了！');
-      }
-    };
+    return new Promise((resolve, reject) => {
+      objectStore.openCursor().onsuccess = (event) => {
+        const cursor = event.target.result;
+        if (cursor) {
+          list.push(cursor.value);
+          cursor.continue();
+        } else {
+          resolve(list);
+          console.log('没有更多数据了！');
+        }
+      };
+    });
   }
 }
 
