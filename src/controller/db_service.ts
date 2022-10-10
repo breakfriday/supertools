@@ -15,31 +15,51 @@ class DbService {
     // this.db = {};
     console.log('----');
   }
+  async _getTransaction(storeName) {
+    let db;
+    // 先从缓存获取
+    if (this.db) {
+      db = this.db;
+    } else {
+      db = await this.create_db('local_db');
+    }
+    return db.transaction([storeName], 'readwrite');
+  }
+  /**
+   * 获取store
+   */
+  async _getObjectStore(storeName, version) {
+    const transaction = await this._getTransaction(storeName);
+    return transaction.objectStore(storeName);
+  }
 
-  create_db(dbName, version = 1) {
-    // 打开数据库，若没有则会创建
-    const request_db = indexedDB.open(dbName, version);
-    this.request_db = request_db;
+  async create_db(dbName, version = 1) {
+    return new Promise((resolve, reject) => {
+      // 打开数据库，若没有则会创建
+      const request_db = indexedDB.open(dbName, version);
+      this.request_db = request_db;
 
-    // 数据库打开失败的回调
-    request_db.onerror = function (event) {
-      console.log('数据库打开报错');
-    };
+      // 数据库打开失败的回调
+      request_db.onerror = function (event) {
+        console.log('数据库打开报错');
+      };
 
 
-    request_db.onsuccess = (event: any) => {
-      console.log('数据库连接成功');
+      request_db.onsuccess = (event: any) => {
+        console.log('数据库连接成功');
+        this.db = event.target.result; // 数据库对象
+        resolve(this.db);
+      };
 
-      this.db = event.target.result; // 数据库对象
-    };
+      request_db.onupgradeneeded = (event: any) => {
+        console.log('onupgradeneeded  出发');
 
-    request_db.onupgradeneeded = (event: any) => {
-      console.log('onupgradeneeded  出发');
+        this.db = event.target.result; // 数据库对象
 
-      this.db = event.target.result; // 数据库对象
-
-      this.create_store('scense_table_store');
-    };
+        this.create_store('scense_table_store');
+        resolve(this.db);
+      };
+    });
   }
 
 
@@ -52,6 +72,7 @@ class DbService {
       objectStore.createIndex('ids', 'ids', { unique: true });
     }
   }
+
 
   addData(storeName, data) {
     const request = this.db.transaction([storeName], 'readwrite') // 事务对象 指定表格名称和操作模式（"只读"或"读写"）
