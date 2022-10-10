@@ -2,8 +2,8 @@
 import { POPUP_HTML_PATH } from '@/config/constants';
 import styles from './index.module.scss';
 import Pannel from './components/pannel';
-import react, { useEffect, useState } from 'react';
-import { Button, Box, Dialog, Form, Input, Checkbox } from '@alifd/next';
+import react, { useEffect, useState, useRef } from 'react';
+import { Button, Box, Dialog, Form, Input, Checkbox, Field } from '@alifd/next';
 import { invoke_service } from '@/actions';
 
 const FormItem = Form.Item;
@@ -20,6 +20,7 @@ const formItemLayout = {
 
 const Home = () => {
   const [show_scense_dialog_state, set_show_scense_dialog_state] = useState(false);
+  const scense_form_field = Field.useField();
   return (
     <div className={styles['grid_wrapper']} >
       <div className={styles['menu_box']}>
@@ -28,8 +29,8 @@ const Home = () => {
             type="primary"
             className={styles['button1']}
             onClick={() => {
-              invoke_service.pri_test({})
-              invoke_service.open_db()
+              invoke_service.pri_test({});
+              invoke_service.open_db();
               set_show_scense_dialog_state(true);
             }}
           >添加场景
@@ -52,10 +53,15 @@ const Home = () => {
         onClose={() => {
           set_show_scense_dialog_state(false);
         }}
+        onOk={() => {
+          set_show_scense_dialog_state(false);
+          const data = scense_form_field.getValues();
+          invoke_service.add_scence(data);
+        }}
       >
-        <Form {...formItemLayout} colon>
+        <Form {...formItemLayout} colon field={scense_form_field}>
           <FormItem
-            name="scence"
+            name="name"
             label="场景名"
             required
 
@@ -63,7 +69,7 @@ const Home = () => {
             <Input />
           </FormItem>
           <FormItem
-            name="scence_remark"
+            name="remark"
             label="场景备注"
 
           >
