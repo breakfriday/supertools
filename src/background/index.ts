@@ -1,5 +1,6 @@
 import forward from './foward-service';
 import { ALL_URLS, BLOCKING, DISABLED } from './constant';
+import ScenseService from '@/controller/scense_service';
 
 import { Enabled } from './esum';
 
@@ -44,6 +45,8 @@ chrome.webRequest.onBeforeRequest.addListener(
 window.pro_test = () => {
   console.log('this is the test');
 };
+
+window.ScenseService = ScenseService;
 
 // chrome.webRequest.onBeforeRequest.addListener(
 //   (details) => {

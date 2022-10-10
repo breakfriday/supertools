@@ -2,6 +2,7 @@ class DbService {
   private request_db;
   private db: any= {};
 
+
   create_db(dbName, version = 1) {
     // 打开数据库，若没有则会创建
     const request_db = indexedDB.open(dbName, version);
@@ -40,11 +41,19 @@ class DbService {
   }
 
   addData(storeName, data) {
-    this.db.transaction([storeName], 'readwrite') // 事务对象 指定表格名称和操作模式（"只读"或"读写"）
+    const request = this.db.transaction([storeName], 'readwrite') // 事务对象 指定表格名称和操作模式（"只读"或"读写"）
       .objectStore(storeName) // 仓库对象
       .add(data);
+
+    request.onsuccess = function (event) {
+      console.log('数据更新成功');
+    };
+
+    request.onerror = function (event) {
+      console.log('数据更新失败');
+    };
   }
 }
 
 
-export default new DbService();
+export default DbService;
