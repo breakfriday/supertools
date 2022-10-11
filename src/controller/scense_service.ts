@@ -15,7 +15,7 @@ class ScenseService extends db_service {
     this.create_db('local_db');
   }
 
-  add_rules(data) {
+  add_rules(data: RuleItemInterface) {
     return this.addData(RULES_TABLE_NAME, data);
   }
 
