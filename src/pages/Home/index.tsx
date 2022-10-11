@@ -63,12 +63,35 @@ const Home = () => {
         <div>
 
 
-          <Menu defaultOpenKeys="1" className={styles['my-menu']} openMode="single">
+          <Menu
+            defaultOpenKeys="1"
+            className={styles['my-menu']}
+            onItemClick={(key, record) => {
+              const id = key;
+              const new_status = record.status === 1 ? 0 : 1;
+              const new_data = fp_map((item) => {
+                if (item.id == id) {
+                  item.status = new_status;
+                }
+                return item;
+              })(scense_list_state);
+              set_scense_list_state(new_data);
+            }}
+
+
+          >
 
             {
             (() => {
               return fp_map((item) => {
-                return <Menu.CheckboxItem key={item.id}>{item.name}</Menu.CheckboxItem>;
+                return (
+                  <Menu.Item
+                    key={item.id}
+
+                  >
+                    <Checkbox checked={item.status === 1} />
+                    {item.name}
+                  </Menu.Item>);
               })(scense_list_state);
             })()
           }
