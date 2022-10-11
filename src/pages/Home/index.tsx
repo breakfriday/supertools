@@ -3,10 +3,13 @@ import { POPUP_HTML_PATH } from '@/config/constants';
 import styles from './index.module.scss';
 import Pannel from './components/pannel';
 import react, { useEffect, useState, useRef } from 'react';
-import { Button, Box, Dialog, Form, Input, Checkbox, Field } from '@alifd/next';
+import { Button, Box, Dialog, Form, Input, Checkbox, Field, Menu } from '@alifd/next';
 import { invoke_service } from '@/actions';
 import fp_get from 'lodash/fp/get';
 import fp_map from 'lodash/fp/map';
+
+const { SubMenu, Item } = Menu;
+
 
 const FormItem = Form.Item;
 
@@ -58,13 +61,20 @@ const Home = () => {
         </div>
 
         <div>
-          {
+
+
+          <Menu defaultOpenKeys="1" className="my-menu" openMode="single">
+
+            {
             (() => {
               return fp_map((item) => {
-                return <div className={styles['menu_item']}>{item.name}</div>;
+                return <Menu.CheckboxItem key={item.id}>{item.name}</Menu.CheckboxItem>;
               })(scense_list_state);
             })()
           }
+
+
+          </Menu>,
         </div>
 
       </div>

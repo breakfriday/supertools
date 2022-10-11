@@ -19,8 +19,8 @@ class ScenseService extends db_service {
     return this.addData(SCENSE_TABLE_NAME, data);
   }
 
-  delete_scense() {
-
+  delete_scense(key) {
+    return this.delete_data(SCENSE_TABLE_NAME, key);
   }
   async get_all_scense() {
     const { db } = this;
@@ -33,7 +33,8 @@ class ScenseService extends db_service {
       objectStore.openCursor().onsuccess = (event) => {
         const cursor = event.target.result;
         if (cursor) {
-          list.push(cursor.value);
+          const temp_item = { ...cursor.value, id: cursor.key };
+          list.push(temp_item);
           cursor.continue();
         } else {
           resolve({

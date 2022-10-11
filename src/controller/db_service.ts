@@ -98,6 +98,12 @@ class DbService {
       };
     });
   }
+
+  async delete_data(storeName, data) {
+    const objectStore = await this._getObjectStore(SCENSE_TABLE_NAME);
+
+    return '';
+  }
 }
 
 
