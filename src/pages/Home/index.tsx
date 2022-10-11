@@ -63,7 +63,7 @@ const Home = () => {
         <div>
 
 
-          <Menu defaultOpenKeys="1" className="my-menu" openMode="single">
+          <Menu defaultOpenKeys="1" className={styles['my-menu']} openMode="single">
 
             {
             (() => {
