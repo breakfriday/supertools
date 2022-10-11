@@ -7,6 +7,7 @@ import { Button, Box, Dialog, Form, Input, Checkbox, Field, Menu } from '@alifd/
 import { invoke_service } from '@/actions';
 import fp_get from 'lodash/fp/get';
 import fp_map from 'lodash/fp/map';
+import { string } from 'prop-types';
 
 const { SubMenu, Item } = Menu;
 
@@ -66,17 +67,18 @@ const Home = () => {
           <Menu
             defaultOpenKeys="1"
             className={styles['my-menu']}
-            onItemClick={(key, record) => {
-              const id = key;
-              const new_status = record.status === 1 ? 0 : 1;
-              const new_data = fp_map((item) => {
-                if (item.id == id) {
-                  item.status = new_status;
-                }
-                return item;
-              })(scense_list_state);
-              set_scense_list_state(new_data);
-            }}
+            // onItemClick={(key, record) => {
+            //   const id = key;
+            //   const new_status = String(record.status) === '1' ? '0' : '1';
+            //   const new_data = fp_map((item) => {
+            //     if (item.id == id) {
+            //       item.status = new_status;
+            //     }
+            //     return item;
+            //   })(scense_list_state);
+            //   debugger;
+            //   set_scense_list_state(new_data);
+            // }}
 
 
           >
@@ -89,7 +91,25 @@ const Home = () => {
                     key={item.id}
 
                   >
-                    <Checkbox checked={item.status === 1} />
+                    <Checkbox
+                      checked={item.status === '1'}
+                      id={item.id}
+                      data-spm={{ name: 21 }}
+                      onClick={() => {
+                        const { id } = item;
+                        const record = item;
+                        const new_status = String(record.status) === '1' ? '0' : '1';
+                        const new_data = fp_map((it) => {
+                          if (it.id == id) {
+                            it.status = new_status;
+                          }
+                          return it;
+                        })(scense_list_state);
+                        set_scense_list_state(new_data);
+
+                        // alert(JSON.stringify(item));
+                      }}
+                    />
                     {item.name}
                   </Menu.Item>);
               })(scense_list_state);
