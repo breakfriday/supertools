@@ -52,6 +52,11 @@ const Home = () => {
       }
       return it;
     })(scense_list_state);
+    try {
+      const res = await invoke_service.update_scence({ id, data: { status: new_status } });
+    } catch (e) {
+      console.log(e);
+    }
     set_scense_list_state(new_data);
   };
 

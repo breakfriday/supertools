@@ -66,7 +66,7 @@ class DbService {
   create_store(store_name) {
     // const objectStore = this.db.createObjectStore(store_name, { keyPath: 'id' });
     if (!this.db.objectStoreNames.contains(store_name)) {
-      const objectStore = this.db.createObjectStore(store_name, { autoIncrement: true });
+      const objectStore = this.db.createObjectStore(store_name, { autoIncrement: true, keyPath: 'id' });
 
       objectStore.createIndex('name', 'name', { unique: false });
       objectStore.createIndex('ids', 'ids', { unique: true });
@@ -110,26 +110,33 @@ class DbService {
       };
 
       request.onsuccess = function (event) {
-        if (request.result) {
+        if (event.target.result) {
           resolve({
             success: true,
-            data: request.result,
+            data: event.target.result,
+            object_store: objectStore,
           });
         } else {
           resolve({
             success: true,
             data: '',
+            object_store: objectStore,
           });
         }
       };
     });
   }
 
-  async updateData(storeName, key, data) {
+  async updateData_by_read(storeName, key, update_data) {
     try {
-      const temp_data = await this.get_data_by_key(storeName, key);
+      const { data, object_store } = await this.get_data_by_key(storeName, key);
 
-      debugger;
+      const new_data = Object.assign(data, update_data);
+
+
+      return new Promise((resolve, reject) => {
+        object_store.put(new_data);
+      });
     } catch (e) {
       console.log(e);
     }

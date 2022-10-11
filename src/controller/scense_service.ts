@@ -11,8 +11,9 @@ class ScenseService extends db_service {
     this.create_db('local_db');
   }
 
-  update_scense() {
-
+  update_scense(parm) {
+    const { id, data } = parm;
+    return this.updateData_by_read(SCENSE_TABLE_NAME, id, data);
   }
 
   add_scense(data) {
