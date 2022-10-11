@@ -26,7 +26,7 @@ const invoke_service = {
   },
 
   add_scence: (data) => {
-    background_page.ScenseService.add_scense(data);
+    return background_page.ScenseService.add_scense(data);
     // dbService.addData(SCENSE_TABLE_NAME, data);
   },
 

@@ -16,7 +16,7 @@ class ScenseService extends db_service {
   }
 
   add_scense(data) {
-    this.addData(SCENSE_TABLE_NAME, data);
+    return this.addData(SCENSE_TABLE_NAME, data);
   }
 
   delete_scense() {

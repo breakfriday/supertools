@@ -86,7 +86,11 @@ const Home = () => {
         onOk={() => {
           set_show_scense_dialog_state(false);
           const data = scense_form_field.getValues();
-          invoke_service.add_scence(data);
+          invoke_service.add_scence(data).then((res) => {
+            if (res.success === true) {
+              async_get_scense();
+            }
+          });
         }}
       >
         <Form {...formItemLayout} colon field={scense_form_field}>
