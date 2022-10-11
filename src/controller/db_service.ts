@@ -135,7 +135,16 @@ class DbService {
 
 
       return new Promise((resolve, reject) => {
-        object_store.put(new_data);
+        const request = object_store.put(new_data);
+
+        request.onsuccess = function (event) {
+          resolve({
+            success: true,
+          });
+        };
+        request.onerror = (event) => {
+          reject({});
+        };
       });
     } catch (e) {
       console.log(e);
