@@ -99,6 +99,47 @@ class DbService {
     });
   }
 
+  async get_data_by_key(storeName, key) {
+    const objectStore = await this._getObjectStore(SCENSE_TABLE_NAME);
+
+    return new Promise((resolve, reject) => {
+      const request = objectStore.get(key);
+
+      request.onerror = function (event) {
+        console.log('读取失败');
+      };
+
+      request.onsuccess = function (event) {
+        if (request.result) {
+          resolve({
+            success: true,
+            data: request.result,
+          });
+        } else {
+          resolve({
+            success: true,
+            data: '',
+          });
+        }
+      };
+    });
+  }
+
+  async updateData(storeName, key, data) {
+    try {
+      const temp_data = await this.get_data_by_key(storeName, key);
+
+      debugger;
+    } catch (e) {
+      console.log(e);
+    }
+
+
+    return new Promise((resolve, reject) => {
+
+    });
+  }
+
   async delete_data(storeName, data) {
     const objectStore = await this._getObjectStore(SCENSE_TABLE_NAME);
 

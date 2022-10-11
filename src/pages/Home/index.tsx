@@ -42,6 +42,19 @@ const Home = () => {
     }
   };
 
+  const async_update_scense = async (item) => {
+    const { id } = item;
+    const record = item;
+    const new_status = String(record.status) === '1' ? '0' : '1';
+    const new_data = fp_map((it) => {
+      if (it.id == id) {
+        it.status = new_status;
+      }
+      return it;
+    })(scense_list_state);
+    set_scense_list_state(new_data);
+  };
+
   useEffect(() => {
     async_get_scense();
   }, []);
@@ -96,16 +109,18 @@ const Home = () => {
                       id={item.id}
                       data-spm={{ name: 21 }}
                       onClick={() => {
-                        const { id } = item;
-                        const record = item;
-                        const new_status = String(record.status) === '1' ? '0' : '1';
-                        const new_data = fp_map((it) => {
-                          if (it.id == id) {
-                            it.status = new_status;
-                          }
-                          return it;
-                        })(scense_list_state);
-                        set_scense_list_state(new_data);
+                        // const { id } = item;
+                        // const record = item;
+                        // const new_status = String(record.status) === '1' ? '0' : '1';
+                        // const new_data = fp_map((it) => {
+                        //   if (it.id == id) {
+                        //     it.status = new_status;
+                        //   }
+                        //   return it;
+                        // })(scense_list_state);
+                        // set_scense_list_state(new_data);
+
+                        async_update_scense(item);
 
                         // alert(JSON.stringify(item));
                       }}
