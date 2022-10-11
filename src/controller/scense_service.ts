@@ -24,6 +24,7 @@ class ScenseService extends db_service {
     return '';
   }
 
+  // 获取规则列表
   async get_rules_by_scense() {
     const objectStore = await this._getObjectStore(RULES_TABLE_NAME);
     const list = [];

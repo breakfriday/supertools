@@ -1,4 +1,4 @@
-import { SCENSE_TABLE_NAME } from '@/background/constant';
+import { SCENSE_TABLE_NAME, RULES_TABLE_NAME } from '@/background/constant';
 
 class DbService {
   private request_db;
@@ -68,7 +68,14 @@ class DbService {
     if (!this.db.objectStoreNames.contains(store_name)) {
       const objectStore = this.db.createObjectStore(store_name, { autoIncrement: true, keyPath: 'id' });
 
-      const config_index = [{ name: 'name', unique: false }, { name: 'ids', unique: true }];
+      let config_index = config.index;
+      if (store_name === SCENSE_TABLE_NAME) {
+        config_index = [{ name: 'name', unique: false }, { name: 'ids', unique: true }];
+      }
+
+      if (store_name === RULES_TABLE_NAME) {
+        config_index = [{ name: 'name', unique: false }, { name: 'status', unique: false }];
+      }
       // config.index.map((item) => {
       //   debugger
       //   objectStore.createIndex(item.name, item.name, { unique: item.unique });
@@ -86,7 +93,8 @@ class DbService {
 
 
   async addData(storeName, data) {
-    const objectStore = await this._getObjectStore(SCENSE_TABLE_NAME);
+    this.create_store(storeName);
+    const objectStore = await this._getObjectStore(storeName);
 
     return new Promise((resolve, reject) => {
     //   const request = this.db.transaction([storeName], 'readwrite') // 事务对象 指定表格名称和操作模式（"只读"或"读写"）
