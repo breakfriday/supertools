@@ -31,7 +31,7 @@ const invoke_service = {
   },
 
   get_scence_list: () => {
-    background_page.ScenseService.get_all_scense();
+    return background_page.ScenseService.get_all_scense();
   },
 
 

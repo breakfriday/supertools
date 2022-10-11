@@ -5,6 +5,8 @@ import Pannel from './components/pannel';
 import react, { useEffect, useState, useRef } from 'react';
 import { Button, Box, Dialog, Form, Input, Checkbox, Field } from '@alifd/next';
 import { invoke_service } from '@/actions';
+import fp_get from 'lodash/fp/get';
+import fp_map from 'lodash/fp/map';
 
 const FormItem = Form.Item;
 
@@ -20,10 +22,24 @@ const formItemLayout = {
 
 const Home = () => {
   const [show_scense_dialog_state, set_show_scense_dialog_state] = useState(false);
+  const [scense_list_state, set_scense_list_state] = useState([]);
   const scense_form_field = Field.useField();
 
+
+  const async_get_scense = async () => {
+    let res = {};
+    try {
+      res = await invoke_service.get_scence_list();
+      if (res.sucess === true) {
+        set_scense_list_state(res.data);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
-    invoke_service.get_scence_list();
+    async_get_scense();
   }, []);
   return (
     <div className={styles['grid_wrapper']} >
@@ -39,6 +55,16 @@ const Home = () => {
             }}
           >添加场景
           </Button>
+        </div>
+
+        <div>
+          {
+            (() => {
+              return fp_map((item) => {
+                return <div>{item.name}</div>;
+              })(scense_list_state);
+            })()
+          }
         </div>
 
       </div>

@@ -36,7 +36,10 @@ class ScenseService extends db_service {
           list.push(cursor.value);
           cursor.continue();
         } else {
-          resolve(list);
+          resolve({
+            sucess: true,
+            data: list,
+          });
           console.log('没有更多数据了！');
         }
       };
