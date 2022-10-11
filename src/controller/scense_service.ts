@@ -1,4 +1,4 @@
-import { SCENSE_TABLE_NAME } from '@/background/constant';
+import { SCENSE_TABLE_NAME, RULES_TABLE_NAME } from '@/background/constant';
 import db_service from './db_service';
 
 class ScenseService extends db_service {
@@ -9,6 +9,29 @@ class ScenseService extends db_service {
 
   create_scense() {
     this.create_db('local_db');
+  }
+
+  create_rules() {
+    this.create_db('local_db');
+  }
+
+  add_rules(data) {
+    return this.addData(RULES_TABLE_NAME, data);
+  }
+
+  async create_rules_store() {
+    const store = this.create_store(RULES_TABLE_NAME);
+    return '';
+  }
+
+  async get_rules_by_scense() {
+    const objectStore = await this._getObjectStore(RULES_TABLE_NAME);
+    const list = [];
+
+
+    return new Promise((resolve, reject) => {
+      resolve({});
+    });
   }
 
   update_scense(parm) {

@@ -63,13 +63,24 @@ class DbService {
   }
 
 
-  create_store(store_name) {
+  create_store(store_name, config: {index: any[]} = { index: [] }) {
     // const objectStore = this.db.createObjectStore(store_name, { keyPath: 'id' });
     if (!this.db.objectStoreNames.contains(store_name)) {
       const objectStore = this.db.createObjectStore(store_name, { autoIncrement: true, keyPath: 'id' });
 
-      objectStore.createIndex('name', 'name', { unique: false });
-      objectStore.createIndex('ids', 'ids', { unique: true });
+      const config_index = [{ name: 'name', unique: false }, { name: 'ids', unique: true }];
+      // config.index.map((item) => {
+      //   debugger
+      //   objectStore.createIndex(item.name, item.name, { unique: item.unique });
+      // });
+
+      config_index.map((item) => {
+        objectStore.createIndex(item.name, item.name, { unique: item.unique });
+      });
+
+
+      // objectStore.createIndex(config.index[0]['name'], config.index[0]['name'], { unique: false });
+      // objectStore.createIndex('ids', 'ids', { unique: true });
     }
   }
 
