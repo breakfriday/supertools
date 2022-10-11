@@ -13,6 +13,11 @@
 
   .menu_box{
     border-right: 1px solid #e8e8e8;
+
+    .menu_item{
+      cursor: pointer;
+      padding: 8px;
+    }
   }
 
   .add_box{

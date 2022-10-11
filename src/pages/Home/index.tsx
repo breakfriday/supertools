@@ -61,7 +61,7 @@ const Home = () => {
           {
             (() => {
               return fp_map((item) => {
-                return <div>{item.name}</div>;
+                return <div className={styles['menu_item']}>{item.name}</div>;
               })(scense_list_state);
             })()
           }
