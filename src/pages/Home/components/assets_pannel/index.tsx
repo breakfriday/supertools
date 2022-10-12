@@ -22,6 +22,9 @@ function AssetsPannel() {
   const [module_list_state, set_module_list_state] = useState([]);
   const [select_rows_state, set_select_rows_state] = useState([]);
 
+  const [show_edit_rule_dialog_state, set_show_edit_rule_dialog_state] = useState(false);
+
+
   const field_form = Field.useField([]);
 
   const get_module_list = async () => {
@@ -139,7 +142,7 @@ function AssetsPannel() {
       <Dialog
         visible={show_api_rule_dialog_state}
         width={'500px'}
-        title="模块代理"
+        title="新增"
         v2
         onCancel={() => {
           set_api_rule_dialog_state(false);
@@ -149,6 +152,54 @@ function AssetsPannel() {
         }}
         onOk={(parm) => {
           add_item();
+        }}
+      >
+        <Form field={field_form} {...formItemLayout} colon>
+          <FormItem
+            label="前端资源"
+            required
+
+          >
+            <Input
+              name="proxy_rule"
+              placeholder=" "
+              {...field_form.init('proxy_rule', {
+
+                rules: [{ required: true }],
+              })}
+            />
+          </FormItem>
+          <FormItem
+            label="替换内容"
+            required
+          >
+            <Input
+              name="proxy_target"
+              placeholder="https://localhost/${name}/js/index.js"
+              {...field_form.init('proxy_target', {
+                rules: [{ required: true }],
+
+              })}
+            />
+          </FormItem>
+
+        </Form>
+      </Dialog>
+
+
+      <Dialog
+        visible={show_edit_rule_dialog_state}
+        width={'500px'}
+        title="编辑"
+        v2
+        onCancel={() => {
+          set_show_edit_rule_dialog_state(false)
+        }}
+        onClose={() => {
+          set_show_edit_rule_dialog_state(false)
+        }}
+        onOk={(parm) => {
+          // add_item();
         }}
       >
         <Form field={field_form} {...formItemLayout} colon>
