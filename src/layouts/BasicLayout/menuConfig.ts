@@ -3,7 +3,7 @@ const headerMenuConfig = [];
 const asideMenuConfig = [
 
   {
-    name: 'mock代理',
+    name: 'MOCK代理',
     path: '/',
     icon: '',
     children: [
@@ -23,6 +23,13 @@ const asideMenuConfig = [
         name: 'remote_proxy',
         path: '/remote',
       },
+    ],
+  },
+  {
+    name: 'RRWEB录屏',
+    path: '/',
+    icon: '',
+    children: [
     ],
   },
   {
