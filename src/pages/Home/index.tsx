@@ -173,7 +173,7 @@ const Home = () => {
       <Dialog
         visible={show_scense_dialog_state}
         width={'500px'}
-        title="场景"
+        title="添加场景"
         v2
         onCancel={() => {
           set_show_scense_dialog_state(false);

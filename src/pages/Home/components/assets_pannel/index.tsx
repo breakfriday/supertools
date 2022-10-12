@@ -13,7 +13,7 @@ const formItemLayout = {
     fixedSpan: 5,
   },
   wrapperCol: {
-    span: 14,
+    span: 19,
   },
 };
 
@@ -211,7 +211,7 @@ function AssetsPannel() {
 
       <Dialog
         visible={show_api_rule_dialog_state}
-        width={'500px'}
+        width={'580px'}
         title="新增"
         v2
         onCancel={() => {
@@ -259,7 +259,7 @@ function AssetsPannel() {
 
       <Dialog
         visible={show_edit_rule_dialog_state.show}
-        width={'500px'}
+        width={'580px'}
         title="编辑"
         v2
         onCancel={() => {
