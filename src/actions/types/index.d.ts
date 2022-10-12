@@ -13,3 +13,11 @@ interface RuleItemInterface{
   id?: number;
   type?: number;
 }
+
+
+interface ScenseItemInterface {
+  name: string;
+  id: number;
+  status: string;
+
+}

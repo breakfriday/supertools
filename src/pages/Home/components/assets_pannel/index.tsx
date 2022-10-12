@@ -27,6 +27,8 @@ function AssetsPannel() {
     field_form.validate((error, values) => {
       const old_data = Object.assign([], module_list_state);
       old_data.push(values);
+
+      debugger
       set_module_list_state(old_data);
       set_api_rule_dialog_state(false);
     });
@@ -50,8 +52,8 @@ function AssetsPannel() {
         className={styles['table_box']}
         emptyContent={<EmptyBlock />}
       >
-        <Table.Column title="前端资源" dataIndex="module_name" />
-        <Table.Column title="本地服务" dataIndex="proxy_url" />
+        <Table.Column title="前端资源" dataIndex="proxy_rule" />
+        <Table.Column title="本地服务" dataIndex="proxy_target" />
         <Table.Column title="操作" dataIndex="time" />
       </Table>
 
@@ -78,9 +80,9 @@ function AssetsPannel() {
 
           >
             <Input
-              name="assets_url"
+              name="proxy_rule"
               placeholder=" "
-              {...field_form.init('module_name', {
+              {...field_form.init('proxy_rule', {
 
               })}
             />
@@ -89,9 +91,9 @@ function AssetsPannel() {
             label="替换内容"
           >
             <Input
-              name="proxy_assets_url"
+              name="proxy_target"
               placeholder="https://localhost/${name}/js/index.js"
-              {...field_form.init('proxy_url', {
+              {...field_form.init('proxy_target', {
 
               })}
             />
