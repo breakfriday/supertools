@@ -98,6 +98,11 @@ function AssetsPannel() {
         dataSource={module_list_state}
         hasBorder={false}
         className={styles['table_box']}
+        rowSelection={{
+          getProps: (record) => {
+            return { };
+          },
+        }}
         emptyContent={<EmptyBlock />}
       >
         <Table.Column title="前端资源" dataIndex="proxy_rule" />
