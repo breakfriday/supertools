@@ -3,7 +3,7 @@ import { POPUP_HTML_PATH } from '@/config/constants';
 import styles from './index.module.scss';
 import Pannel from './components/pannel';
 import react, { useEffect, useState, useRef } from 'react';
-import { Button, Box, Dialog, Form, Input, Checkbox, Field, Menu } from '@alifd/next';
+import { Button, Box, Dialog, Form, Input, Checkbox, Field, Menu, Icon } from '@alifd/next';
 import { invoke_service } from '@/actions';
 import fp_get from 'lodash/fp/get';
 import fp_map from 'lodash/fp/map';
@@ -107,13 +107,15 @@ const Home = () => {
                 return (
                   <Menu.Item
                     key={item.id}
+                    className={styles['menu_item']}
 
                   >
-                    <Checkbox
-                      checked={item.status === '1'}
-                      id={item.id}
-                      data-spm={{ name: 21 }}
-                      onClick={() => {
+                    <div className={styles['row_item']}>
+
+                      <Checkbox
+                        checked={item.status === '1'}
+                        id={item.id}
+                        onClick={() => {
                         // const { id } = item;
                         // const record = item;
                         // const new_status = String(record.status) === '1' ? '0' : '1';
@@ -125,12 +127,19 @@ const Home = () => {
                         // })(scense_list_state);
                         // set_scense_list_state(new_data);
 
-                        async_update_scense(item);
+                          async_update_scense(item);
 
                         // alert(JSON.stringify(item));
-                      }}
-                    />
-                    {item.name}
+                        }}
+                      />
+                      <span className={styles['name_text']}>
+                        {item.name}
+
+                      </span>
+                      <Icon type="ashbin" size={'small'} />
+                      <Icon type="set" size={'small'} />
+
+                    </div>
                   </Menu.Item>);
               })(scense_list_state);
             })()
