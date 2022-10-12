@@ -37,8 +37,15 @@ const invoke_service = {
     return background_page.ScenseService.update_scense(parm);
   },
 
-  add_rules_data: (data, scense_id) => {
-    return background_page.ScenseService.add_rules({ data, scense_id });
+  add_rules_data: (parm: {rule_item: RuleItemInterface; scense_id: number}) => {
+    const { rule_item, scense_id } = parm;
+    rule_item.scense_id = scense_id;
+
+    return background_page.ScenseService.add_rules(rule_item);
+  },
+
+  get_all_rules_list: () => {
+    return background_page.ScenseService.get_all_rules_list();
   },
 
 

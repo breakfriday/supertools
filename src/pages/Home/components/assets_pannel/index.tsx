@@ -2,6 +2,7 @@ import react, { useEffect, useState } from 'react';
 import { Table, Button, Box, Dialog, Form, Input, Checkbox, Select, Field } from '@alifd/next';
 import styles from './index.module.scss';
 import EmptyBlock from '@/components/EmptyBlcok';
+import { invoke_service } from '@/actions';
 
 
 const FormItem = Form.Item;
@@ -21,6 +22,20 @@ function AssetsPannel() {
   const [module_list_state, set_module_list_state] = useState([]);
 
   const field_form = Field.useField([]);
+
+  const get_module_list = async () => {
+    try {
+      const res = await invoke_service.get_all_rules_list();
+      const data = res?.data;
+      set_module_list_state(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    get_module_list();
+  }, []);
 
 
   const add_item = async () => {
@@ -44,10 +59,19 @@ function AssetsPannel() {
       return false;
     }
 
-    const old_data = Object.assign([], module_list_state);
-    old_data.push(form_data);
-    set_module_list_state(old_data);
-    set_api_rule_dialog_state(false);
+    try {
+      const res = await invoke_service.add_rules_data({ rule_item: form_data, scense_id: 1 });
+      get_module_list();
+      set_api_rule_dialog_state(false);
+    } catch (e) {
+      console.log(e);
+    }
+
+
+    // const old_data = Object.assign([], module_list_state);
+    // old_data.push(form_data);
+    // set_module_list_state(old_data);
+    // set_api_rule_dialog_state(false);
     // field_form.validate((error, values) => {
     //   const old_data = Object.assign([], module_list_state);
     //   old_data.push(values);

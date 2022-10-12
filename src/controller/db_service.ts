@@ -57,6 +57,7 @@ class DbService {
         this.db = event.target.result; // 数据库对象
 
         this.create_store('scense_table_store');
+        this.create_store(RULES_TABLE_NAME);
         resolve(this.db);
       };
     });
@@ -93,7 +94,7 @@ class DbService {
 
 
   async addData(storeName, data) {
-    this.create_store(storeName);
+    // this.create_store(storeName);
     const objectStore = await this._getObjectStore(storeName);
 
     return new Promise((resolve, reject) => {

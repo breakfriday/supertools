@@ -16,6 +16,7 @@ class ScenseService extends db_service {
   }
 
   add_rules(data: RuleItemInterface) {
+    debugger;
     return this.addData(RULES_TABLE_NAME, data);
   }
 
@@ -59,6 +60,28 @@ class ScenseService extends db_service {
         const cursor = event.target.result;
         if (cursor) {
           const temp_item = { ...cursor.value, id: cursor.key };
+          list.push(temp_item);
+          cursor.continue();
+        } else {
+          resolve({
+            sucess: true,
+            data: list,
+          });
+          console.log('没有更多数据了！');
+        }
+      };
+    });
+  }
+
+  async get_all_rules_list() {
+    const objectStore = await this._getObjectStore(RULES_TABLE_NAME);
+    const list = [];
+
+    return new Promise((resolve, reject) => {
+      objectStore.openCursor().onsuccess = (event) => {
+        const cursor = event.target.result;
+        if (cursor) {
+          const temp_item = { ...cursor.value };
           list.push(temp_item);
           cursor.continue();
         } else {
