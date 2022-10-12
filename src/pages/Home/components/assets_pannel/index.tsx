@@ -28,6 +28,8 @@ function AssetsPannel() {
 
   const field_form = Field.useField([]);
 
+  const edit_field_form = Field.useField([]);
+
   const get_module_list = async () => {
     try {
       const res = await invoke_service.get_all_rules_list();
@@ -53,6 +55,39 @@ function AssetsPannel() {
       record.status = status;
       const res = await invoke_service.update_rule({ id: record.id, data: record });
       get_module_list();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
+  const async_update_rule_data = async () => {
+    let form_data: any = {};
+    const promise_validate = () => {
+      return new Promise((resolve, reject) => {
+        edit_field_form.validate((error, values) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(values);
+          }
+        });
+      });
+    };
+
+    try {
+      form_data = await promise_validate();
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+
+    const id = fp_get('data.id')(show_edit_rule_dialog_state);
+    const data = Object.assign({}, form_data);
+    try {
+      const res = await invoke_service.update_rule({ id, data });
+      get_module_list();
+      set_show_edit_rule_dialog_state({ show: false, data: {} });
     } catch (e) {
       console.log(e);
     }
@@ -234,10 +269,11 @@ function AssetsPannel() {
           set_show_edit_rule_dialog_state({ show: false, data: {} });
         }}
         onOk={(parm) => {
+          async_update_rule_data();
           // add_item();
         }}
       >
-        <Form field={field_form} {...formItemLayout} colon>
+        <Form field={edit_field_form} {...formItemLayout} colon>
           <FormItem
             label="前端资源"
             required
@@ -246,7 +282,7 @@ function AssetsPannel() {
             <Input
               name="proxy_rule"
               placeholder=" "
-              {...field_form.init('proxy_rule', {
+              {...edit_field_form.init('proxy_rule', {
                 initValue: fp_get('data.proxy_rule')(show_edit_rule_dialog_state),
 
                 rules: [{ required: true }],
@@ -260,7 +296,7 @@ function AssetsPannel() {
             <Input
               name="proxy_target"
               placeholder="https://localhost/${name}/js/index.js"
-              {...field_form.init('proxy_target', {
+              {...edit_field_form.init('proxy_target', {
                 initValue: fp_get('data.proxy_target')(show_edit_rule_dialog_state),
                 rules: [{ required: true }],
 
