@@ -132,16 +132,19 @@ function AssetsPannel() {
               placeholder=" "
               {...field_form.init('proxy_rule', {
 
+                rules: [{ required: true }],
               })}
             />
           </FormItem>
           <FormItem
             label="替换内容"
+            required
           >
             <Input
               name="proxy_target"
               placeholder="https://localhost/${name}/js/index.js"
               {...field_form.init('proxy_target', {
+                rules: [{ required: true }],
 
               })}
             />
