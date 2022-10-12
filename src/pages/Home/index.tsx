@@ -60,6 +60,15 @@ const Home = () => {
     set_scense_list_state(new_data);
   };
 
+  const async_delete_scense = async (id) => {
+    try {
+      const res = await invoke_service.delete_scense({ id });
+      async_get_scense();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     async_get_scense();
   }, []);
@@ -136,7 +145,14 @@ const Home = () => {
                         {item.name}
 
                       </span>
-                      <Icon type="ashbin" size={'small'} />
+                      <Icon
+                        type="ashbin"
+                        size={'small'}
+                        onClick={() => {
+                          const { id } = item;
+                          async_delete_scense(id);
+                        }}
+                      />
                       <Icon type="set" size={'small'} />
 
                     </div>

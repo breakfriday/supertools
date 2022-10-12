@@ -54,6 +54,10 @@ const invoke_service = {
     const { id } = parm;
     return background_page.ScenseService.delet_rule(id);
   },
+  delete_scense: (parm) => {
+    const { id } = parm;
+    return background_page.ScenseService.delete_scense(id);
+  },
 
 
 };
