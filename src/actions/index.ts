@@ -36,7 +36,9 @@ const invoke_service = {
   update_scence: (parm: {id: string|number; data: {}}) => {
     return background_page.ScenseService.update_scense(parm);
   },
-
+  update_rule: (parm: {id: string|number; data: {}}) => {
+    return background_page.ScenseService.update_rule(parm);
+  },
   add_rules_data: (parm: {rule_item: RuleItemInterface; scense_id: number}) => {
     const { rule_item, scense_id } = parm;
     rule_item.scense_id = scense_id;

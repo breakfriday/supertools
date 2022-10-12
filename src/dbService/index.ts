@@ -78,14 +78,12 @@ class DbService {
     request_db.onsuccess = (event: any) => {
       console.log('数据库连接成功');
 
-      debugger;
     //   this.db = event.target.result; // 数据库对象
     };
 
     // 创建数据库也是升级事件
     request_db.onupgradeneeded = (event: any) => {
       console.log('onupgradeneeded  出发');
-      debugger;
     };
   }
 

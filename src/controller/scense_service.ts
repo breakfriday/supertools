@@ -16,7 +16,6 @@ class ScenseService extends db_service {
   }
 
   add_rules(data: RuleItemInterface) {
-    debugger;
     return this.addData(RULES_TABLE_NAME, data);
   }
 
@@ -39,6 +38,11 @@ class ScenseService extends db_service {
   update_scense(parm) {
     const { id, data } = parm;
     return this.updateData_by_read(SCENSE_TABLE_NAME, id, data);
+  }
+
+  update_rule(parm) {
+    const { id, data } = parm;
+    return this.updateData_by_read(RULES_TABLE_NAME, id, data);
   }
 
   add_scense(data) {

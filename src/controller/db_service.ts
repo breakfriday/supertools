@@ -120,7 +120,7 @@ class DbService {
   }
 
   async get_data_by_key(storeName, key) {
-    const objectStore = await this._getObjectStore(SCENSE_TABLE_NAME);
+    const objectStore = await this._getObjectStore(storeName);
 
     return new Promise((resolve, reject) => {
       const request = objectStore.get(key);

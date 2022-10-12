@@ -3,7 +3,7 @@ import { Table, Button, Box, Dialog, Form, Input, Checkbox, Select, Field } from
 import styles from './index.module.scss';
 import EmptyBlock from '@/components/EmptyBlcok';
 import { invoke_service } from '@/actions';
-
+import fp_filter from 'lodash/fp/filter';
 
 const FormItem = Form.Item;
 
@@ -20,6 +20,7 @@ function AssetsPannel() {
   const [show_api_rule_dialog_state, set_api_rule_dialog_state] = useState(false);
 
   const [module_list_state, set_module_list_state] = useState([]);
+  const [select_rows_state, set_select_rows_state] = useState([]);
 
   const field_form = Field.useField([]);
 
@@ -27,9 +28,29 @@ function AssetsPannel() {
     try {
       const res = await invoke_service.get_all_rules_list();
       const data = res?.data;
+      const select_items = fp_filter((item) => {
+        return item.status === 1;
+      })(data);
+      const select_keys = select_items.map((item) => { return item.id; });
+
+      set_select_rows_state(select_keys);
+
+
+      set_select_rows_state(select_keys);
       set_module_list_state(data);
     } catch (e) {
       console.error(e);
+    }
+  };
+
+  const async_update_rule = async (selected, record) => {
+    try {
+      const status = selected === true ? 1 : 0;
+      record.status = status;
+      const res = await invoke_service.update_rule({ id: record.id, data: record });
+      get_module_list();
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -99,6 +120,10 @@ function AssetsPannel() {
         hasBorder={false}
         className={styles['table_box']}
         rowSelection={{
+          onSelect(selected, record, records) {
+            async_update_rule(selected, record);
+          },
+          selectedRowKeys: select_rows_state,
           getProps: (record) => {
             return { };
           },
