@@ -50,6 +50,11 @@ const invoke_service = {
     return background_page.ScenseService.get_all_rules_list();
   },
 
+  delete_rule: (parm) => {
+    const { id } = parm;
+    return background_page.ScenseService.delet_rule(id);
+  },
+
 
 };
 

@@ -57,6 +57,15 @@ function AssetsPannel() {
     }
   };
 
+  const async_delete_rule = async (parm) => {
+    try {
+      const res = await invoke_service.delete_rule(parm);
+      get_module_list();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     get_module_list();
   }, []);
@@ -135,7 +144,29 @@ function AssetsPannel() {
       >
         <Table.Column title="前端资源" dataIndex="proxy_rule" />
         <Table.Column title="本地服务" dataIndex="proxy_target" />
-        <Table.Column title="操作" dataIndex="time" />
+        <Table.Column
+          title="操作"
+          cell={(value, index, record) => {
+            return (
+              <>
+                <Button
+                  className={styles['operator_button']}
+                  type="secondary"
+
+                >编辑
+                </Button>
+                <Button
+                  className={styles['operator_button']}
+                  type="secondary"
+                  onClick={() => {
+                    async_delete_rule({ id: record.id });
+                  }}
+                >删除
+                </Button>
+              </>
+            );
+          }}
+        />
       </Table>
 
 
@@ -193,10 +224,10 @@ function AssetsPannel() {
         title="编辑"
         v2
         onCancel={() => {
-          set_show_edit_rule_dialog_state(false)
+          set_show_edit_rule_dialog_state(false);
         }}
         onClose={() => {
-          set_show_edit_rule_dialog_state(false)
+          set_show_edit_rule_dialog_state(false);
         }}
         onOk={(parm) => {
           // add_item();

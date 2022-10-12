@@ -176,10 +176,22 @@ class DbService {
     });
   }
 
-  async delete_data(storeName, data) {
-    const objectStore = await this._getObjectStore(SCENSE_TABLE_NAME);
+  async delete_data(storeName, id) {
+    const objectStore = await this._getObjectStore(storeName);
 
-    return '';
+    return new Promise((resolve, reject) => {
+      const request = objectStore.delete(id);
+
+      request.onsuccess = function (event) {
+        resolve({
+          sucess: true,
+        });
+      };
+
+      request.onerror = (event) => {
+        reject({});
+      };
+    });
   }
 }
 

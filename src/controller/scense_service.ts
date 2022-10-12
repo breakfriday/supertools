@@ -52,6 +52,9 @@ class ScenseService extends db_service {
   delete_scense(key) {
     return this.delete_data(SCENSE_TABLE_NAME, key);
   }
+  delet_rule(id) {
+    return this.delete_data(RULES_TABLE_NAME, id);
+  }
   async get_all_scense() {
     const { db } = this;
 
