@@ -23,15 +23,39 @@ function AssetsPannel() {
   const field_form = Field.useField([]);
 
 
-  const add_item = () => {
-    field_form.validate((error, values) => {
-      const old_data = Object.assign([], module_list_state);
-      old_data.push(values);
+  const add_item = async () => {
+    const promise_validate = () => {
+      return new Promise((resolve, reject) => {
+        field_form.validate((error, values) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(values);
+          }
+        });
+      });
+    };
 
-      debugger
-      set_module_list_state(old_data);
-      set_api_rule_dialog_state(false);
-    });
+    let form_data: any = {};
+    try {
+      form_data = await promise_validate();
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+
+    const old_data = Object.assign([], module_list_state);
+    old_data.push(form_data);
+    set_module_list_state(old_data);
+    set_api_rule_dialog_state(false);
+    // field_form.validate((error, values) => {
+    //   const old_data = Object.assign([], module_list_state);
+    //   old_data.push(values);
+
+    //   debugger;
+    //   set_module_list_state(old_data);
+    //   set_api_rule_dialog_state(false);
+    // });
   };
 
   return (
