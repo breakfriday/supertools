@@ -4,6 +4,7 @@ import styles from './index.module.scss';
 import EmptyBlock from '@/components/EmptyBlcok';
 import { invoke_service } from '@/actions';
 import fp_filter from 'lodash/fp/filter';
+import fp_get from 'lodash/fp/get';
 
 const FormItem = Form.Item;
 
@@ -22,7 +23,7 @@ function AssetsPannel() {
   const [module_list_state, set_module_list_state] = useState([]);
   const [select_rows_state, set_select_rows_state] = useState([]);
 
-  const [show_edit_rule_dialog_state, set_show_edit_rule_dialog_state] = useState(false);
+  const [show_edit_rule_dialog_state, set_show_edit_rule_dialog_state] = useState({ show: false, data: {} });
 
 
   const field_form = Field.useField([]);
@@ -152,6 +153,9 @@ function AssetsPannel() {
                 <Button
                   className={styles['operator_button']}
                   type="secondary"
+                  onClick={() => {
+                    set_show_edit_rule_dialog_state({ show: true, data: record });
+                  }}
 
                 >编辑
                 </Button>
@@ -219,15 +223,15 @@ function AssetsPannel() {
 
 
       <Dialog
-        visible={show_edit_rule_dialog_state}
+        visible={show_edit_rule_dialog_state.show}
         width={'500px'}
         title="编辑"
         v2
         onCancel={() => {
-          set_show_edit_rule_dialog_state(false);
+          set_show_edit_rule_dialog_state({ show: false, data: {} });
         }}
         onClose={() => {
-          set_show_edit_rule_dialog_state(false);
+          set_show_edit_rule_dialog_state({ show: false, data: {} });
         }}
         onOk={(parm) => {
           // add_item();
@@ -243,6 +247,7 @@ function AssetsPannel() {
               name="proxy_rule"
               placeholder=" "
               {...field_form.init('proxy_rule', {
+                initValue: fp_get('data.proxy_rule')(show_edit_rule_dialog_state),
 
                 rules: [{ required: true }],
               })}
@@ -256,6 +261,7 @@ function AssetsPannel() {
               name="proxy_target"
               placeholder="https://localhost/${name}/js/index.js"
               {...field_form.init('proxy_target', {
+                initValue: fp_get('data.proxy_target')(show_edit_rule_dialog_state),
                 rules: [{ required: true }],
 
               })}
