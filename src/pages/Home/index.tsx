@@ -159,7 +159,7 @@ const Home = () => {
                     className={styles['menu_item']}
                     onClick={() => {
                       pageDispatchers.set_select_scense({ ...item });
-                      pageDispatchers.get_rules_by_scense('');
+                      pageDispatchers.get_rules_by_scense({ scense_id: item.id });
                     }}
 
                   >

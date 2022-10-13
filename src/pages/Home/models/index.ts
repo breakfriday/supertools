@@ -28,9 +28,9 @@ export default {
       });
     },
 
-    async get_rules_by_scense(scense_id) {
+    async get_rules_by_scense(parm = {}) {
       try {
-        const res = await invoke_service.get_all_rules_list();
+        const res = await invoke_service.get_all_rules_list(parm);
         const data = res?.data;
         dispatch.model.update({
           rules_list: data,

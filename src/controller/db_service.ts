@@ -147,6 +147,30 @@ class DbService {
     });
   }
 
+  async get_data_by_index(storeName, index_key, index_value) {
+    // const objectStore = db.transaction([SCENSE_TABLE_NAME]).objectStore(SCENSE_TABLE_NAME); // 事
+    const objectStore = await this._getObjectStore(storeName);
+
+    const list = [];
+
+    return new Promise((resolve, reject) => {
+      objectStore.openCursor().onsuccess = (event) => {
+        const cursor = event.target.result;
+        if (cursor) {
+          const temp_item = { ...cursor.value, id: cursor.key };
+          if (temp_item[index_key] === index_value) { list.push(temp_item); }
+          cursor.continue();
+        } else {
+          resolve({
+            sucess: true,
+            data: list,
+          });
+          console.log('没有更多数据了！');
+        }
+      };
+    });
+  }
+
   async updateData_by_read(storeName, key, update_data) {
     try {
       const { data, object_store } = await this.get_data_by_key(storeName, key);

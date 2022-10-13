@@ -1,5 +1,7 @@
 import { SCENSE_TABLE_NAME, RULES_TABLE_NAME } from '@/background/constant';
 import db_service from './db_service';
+import fp_to_pairs from 'lodash/fp/toPairs';
+import fp_map from 'lodash/fp/map';
 
 class ScenseService extends db_service {
   constructor() {
@@ -90,6 +92,45 @@ class ScenseService extends db_service {
         if (cursor) {
           const temp_item = { ...cursor.value };
           list.push(temp_item);
+          cursor.continue();
+        } else {
+          resolve({
+            sucess: true,
+            data: list,
+          });
+          console.log('没有更多数据了！');
+        }
+      };
+    });
+  }
+
+  async get_all_rules_list_by_key(parm) {
+    const objectStore = await this._getObjectStore(RULES_TABLE_NAME);
+    const pairs_key = fp_to_pairs(parm);
+    const list = [];
+
+    const where_key = (data) => {
+      let reg = true;
+      fp_map((it) => {
+        const key = it[0];
+        const value = it[1];
+
+        if (data[key] != value) {
+          reg = false;
+        }
+      })(pairs_key);
+      return reg;
+    };
+
+    return new Promise((resolve, reject) => {
+      objectStore.openCursor().onsuccess = (event) => {
+        const cursor = event.target.result;
+        if (cursor) {
+          const temp_item = { ...cursor.value };
+          const reg = where_key(temp_item);
+          if (reg === true) {
+            list.push(temp_item);
+          }
           cursor.continue();
         } else {
           resolve({

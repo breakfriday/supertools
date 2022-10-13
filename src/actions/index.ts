@@ -46,8 +46,9 @@ const invoke_service = {
     return background_page.ScenseService.add_rules(rule_item);
   },
 
-  get_all_rules_list: () => {
-    return background_page.ScenseService.get_all_rules_list();
+  get_all_rules_list: (parm) => {
+    const { scense_id = '' } = parm;
+    return background_page.ScenseService.get_all_rules_list_by_key(parm);
   },
 
   delete_rule: (parm) => {
