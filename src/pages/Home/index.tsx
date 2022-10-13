@@ -61,6 +61,14 @@ const Home = () => {
       res = await invoke_service.get_scence_list();
       if (res.sucess === true) {
         set_scense_list_state(res.data);
+
+
+        const scense_id = fp_get('data.0.id')(res);
+        const temp_scense = fp_get('data.0')(res);
+
+        pageDispatchers.set_select_scense({ ...temp_scense });
+
+        pageDispatchers.get_rules_by_scense({ scense_id });
       }
     } catch (e) {
       console.log(e);
