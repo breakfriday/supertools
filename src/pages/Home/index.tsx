@@ -45,6 +45,7 @@ const Home = () => {
       if (res.success === true) {
         async_get_scense();
       }
+      set_show_scense_dialog_state(false);
     });
   };
 
@@ -77,6 +78,28 @@ const Home = () => {
       console.log(e);
     }
     set_scense_list_state(new_data);
+  };
+
+  const async_update_scense_data = async () => {
+    let form_data: any = {};
+
+    try {
+      form_data = await promise_field_validate(edit_scense_form_field);
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+
+    const id = fp_get('data.id')(show_edit_scense_dialog_state);
+
+
+    try {
+      const res = await invoke_service.update_scence({ id, data: form_data });
+      async_get_scense();
+      set_show_edit_scense_dialog_state({ show: false, data: {} });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const async_delete_scense = async (id) => {
@@ -172,7 +195,13 @@ const Home = () => {
                           async_delete_scense(id);
                         }}
                       />
-                      <Icon type="set" size={'small'} />
+                      <Icon
+                        type="set"
+                        size={'small'}
+                        onClick={() => {
+                          set_show_edit_scense_dialog_state({ show: true, data: item });
+                        }}
+                      />
 
                     </div>
                   </Menu.Item>);
@@ -255,7 +284,7 @@ const Home = () => {
           set_show_edit_scense_dialog_state({ show: false, data: {} });
         }}
         onOk={() => {
-
+          async_update_scense_data();
         }}
       >
         <Form {...formItemLayout} colon field={edit_scense_form_field}>
@@ -263,6 +292,10 @@ const Home = () => {
             name="name"
             label="场景名"
             required
+            {...edit_scense_form_field.init('name', {
+              initValue: fp_get('data.name')(show_edit_scense_dialog_state),
+              rules: [{ required: true }],
+            })}
 
           >
             <Input />
@@ -270,9 +303,13 @@ const Home = () => {
           <FormItem
             name="remark"
             label="场景备注"
+            {...edit_scense_form_field.init('remark', {
+              initValue: fp_get('data.remark')(show_edit_scense_dialog_state),
+              rules: [{ required: true }],
+            })}
 
           >
-            <Input.TextArea placeholder="场景描述" />
+            <Input.TextArea placeholder="remark" />
           </FormItem>
 
 
