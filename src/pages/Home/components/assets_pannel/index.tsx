@@ -35,8 +35,7 @@ function AssetsPannel() {
 
   const get_module_list = async () => {
     try {
-      const res = await invoke_service.get_all_rules_list();
-      const data = res?.data;
+      const data = pageState.rules_list;
       const select_items = fp_filter((item) => {
         return item.status === 1;
       })(data);
@@ -55,9 +54,12 @@ function AssetsPannel() {
   const async_update_rule = async (selected, record) => {
     try {
       const status = selected === true ? 1 : 0;
-      record.status = status;
-      const res = await invoke_service.update_rule({ id: record.id, data: record });
-      get_module_list();
+      // record.status = status;
+      const data = Object.assign({ ...record }, { status });
+
+      const res = await invoke_service.update_rule({ id: record.id, data });
+      // get_module_list();
+      pageDispatchers.get_rules_by_scense();
     } catch (e) {
       console.log(e);
     }
@@ -89,7 +91,7 @@ function AssetsPannel() {
     const data = Object.assign({}, form_data);
     try {
       const res = await invoke_service.update_rule({ id, data });
-      get_module_list();
+      pageDispatchers.get_rules_by_scense();
       set_show_edit_rule_dialog_state({ show: false, data: {} });
     } catch (e) {
       console.log(e);
@@ -99,7 +101,7 @@ function AssetsPannel() {
   const async_delete_rule = async (parm) => {
     try {
       const res = await invoke_service.delete_rule(parm);
-      get_module_list();
+      pageDispatchers.get_rules_by_scense();
     } catch (e) {
       console.log(e);
     }
@@ -107,7 +109,7 @@ function AssetsPannel() {
 
   useEffect(() => {
     get_module_list();
-  }, []);
+  }, [pageState.rules_list]);
 
 
   const add_item = async () => {
@@ -133,7 +135,7 @@ function AssetsPannel() {
 
     try {
       const res = await invoke_service.add_rules_data({ rule_item: form_data, scense_id: 1 });
-      get_module_list();
+      pageDispatchers.get_rules_by_scense();
       set_api_rule_dialog_state(false);
     } catch (e) {
       console.log(e);
@@ -172,8 +174,6 @@ function AssetsPannel() {
         className={styles['table_box']}
         rowSelection={{
           onSelect(selected, record, records) {
-            const h = record;
-            debugger;
             async_update_rule(selected, record);
           },
           selectedRowKeys: select_rows_state,
