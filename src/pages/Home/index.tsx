@@ -8,6 +8,7 @@ import { invoke_service } from '@/actions';
 import fp_get from 'lodash/fp/get';
 import fp_map from 'lodash/fp/map';
 import { string } from 'prop-types';
+import { promise_field_validate } from '@/utils/index';
 
 const { SubMenu, Item } = Menu;
 
@@ -28,6 +29,24 @@ const Home = () => {
   const [show_scense_dialog_state, set_show_scense_dialog_state] = useState(false);
   const [scense_list_state, set_scense_list_state] = useState([]);
   const scense_form_field = Field.useField();
+  const edit_scense_form_field = Field.useField();
+  const [show_edit_scense_dialog_state, set_show_edit_scense_dialog_state] = useState({ show: false, data: {} });
+
+  const add_scense = async () => {
+    let form_data: any = {};
+    try {
+      form_data = await promise_field_validate(scense_form_field);
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+
+    invoke_service.add_scence(form_data).then((res) => {
+      if (res.success === true) {
+        async_get_scense();
+      }
+    });
+  };
 
 
   const async_get_scense = async () => {
@@ -182,16 +201,64 @@ const Home = () => {
           set_show_scense_dialog_state(false);
         }}
         onOk={() => {
-          set_show_scense_dialog_state(false);
-          const data = scense_form_field.getValues();
-          invoke_service.add_scence(data).then((res) => {
-            if (res.success === true) {
-              async_get_scense();
-            }
-          });
+          // set_show_scense_dialog_state(false);
+          // const data = scense_form_field.getValues();
+          // invoke_service.add_scence(data).then((res) => {
+          //   if (res.success === true) {
+          //     async_get_scense();
+          //   }
+          // });
+
+          add_scense();
         }}
       >
         <Form {...formItemLayout} colon field={scense_form_field}>
+          <FormItem
+            name="name"
+            label="场景名"
+            required
+
+          >
+            <Input
+              placeholder="场景名"
+              {...scense_form_field.init('name', {
+                rules: [{ required: true }],
+              })}
+            />
+          </FormItem>
+          <FormItem
+            name="remark"
+            label="场景备注"
+
+          >
+            <Input.TextArea
+              placeholder="场景备注"
+              {...scense_form_field.init('remark', {
+                rules: [{ required: true }],
+              })}
+            />
+          </FormItem>
+
+
+        </Form>
+      </Dialog>
+
+      <Dialog
+        visible={fp_get('show')(show_edit_scense_dialog_state)}
+        width={'500px'}
+        title="编辑场景"
+        v2
+        onCancel={() => {
+          set_show_edit_scense_dialog_state({ show: false, data: {} });
+        }}
+        onClose={() => {
+          set_show_edit_scense_dialog_state({ show: false, data: {} });
+        }}
+        onOk={() => {
+
+        }}
+      >
+        <Form {...formItemLayout} colon field={edit_scense_form_field}>
           <FormItem
             name="name"
             label="场景名"

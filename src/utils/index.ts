@@ -6,3 +6,16 @@ export function openLink(url: string, isInner = false): void {
     },
   );
 }
+
+
+export function promise_field_validate(form_field) {
+  return new Promise((resolve, reject) => {
+    form_field.validate((error, values) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(values);
+      }
+    });
+  });
+}
