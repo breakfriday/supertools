@@ -9,11 +9,11 @@ function Pannel() {
   return (
     <div>
       <Tab>
-        <Tab.Item title="HTTP接口MOCK" key="2" >
-          <ServicePannel />
-        </Tab.Item>
         <Tab.Item title="ASSETS资源代理" key="3" >
           <AssetsPannel />
+        </Tab.Item>
+        <Tab.Item title="HTTP接口MOCK" key="2" >
+          <ServicePannel />
         </Tab.Item>
         <Tab.Item title="HTTP接口代理" key="1" >
           <ServicePannel />

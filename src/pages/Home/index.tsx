@@ -10,6 +10,8 @@ import fp_map from 'lodash/fp/map';
 import { string } from 'prop-types';
 import { promise_field_validate } from '@/utils/index';
 
+import pageStore from '@/pages/Home/store';
+
 const { SubMenu, Item } = Menu;
 
 
@@ -31,6 +33,9 @@ const Home = () => {
   const scense_form_field = Field.useField();
   const edit_scense_form_field = Field.useField();
   const [show_edit_scense_dialog_state, set_show_edit_scense_dialog_state] = useState({ show: false, data: {} });
+
+  const [pageState, pageDispatchers] = pageStore.useModel('model');
+
 
   const add_scense = async () => {
     let form_data: any = {};
@@ -136,18 +141,11 @@ const Home = () => {
           <Menu
             defaultOpenKeys="1"
             className={styles['my-menu']}
-            // onItemClick={(key, record) => {
-            //   const id = key;
-            //   const new_status = String(record.status) === '1' ? '0' : '1';
-            //   const new_data = fp_map((item) => {
-            //     if (item.id == id) {
-            //       item.status = new_status;
-            //     }
-            //     return item;
-            //   })(scense_list_state);
-            //   debugger;
-            //   set_scense_list_state(new_data);
-            // }}
+            onItemClick={(key, record) => {
+              // const hh = pageState;
+              // debugger;
+              // pageDispatchers.set_select_scense({ ...record });
+            }}
 
 
           >
@@ -159,6 +157,10 @@ const Home = () => {
                   <Menu.Item
                     key={item.id}
                     className={styles['menu_item']}
+                    onClick={() => {
+                      pageDispatchers.set_select_scense({ ...item });
+                      pageDispatchers.get_rules_by_scense('');
+                    }}
 
                   >
                     <div className={styles['row_item']}>
@@ -166,17 +168,18 @@ const Home = () => {
                       <Checkbox
                         checked={item.status === '1'}
                         id={item.id}
-                        onClick={() => {
-                        // const { id } = item;
-                        // const record = item;
-                        // const new_status = String(record.status) === '1' ? '0' : '1';
-                        // const new_data = fp_map((it) => {
-                        //   if (it.id == id) {
-                        //     it.status = new_status;
-                        //   }
-                        //   return it;
-                        // })(scense_list_state);
-                        // set_scense_list_state(new_data);
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // const { id } = item;
+                          // const record = item;
+                          // const new_status = String(record.status) === '1' ? '0' : '1';
+                          // const new_data = fp_map((it) => {
+                          //   if (it.id == id) {
+                          //     it.status = new_status;
+                          //   }
+                          //   return it;
+                          // })(scense_list_state);
+                          // set_scense_list_state(new_data);
 
                           async_update_scense(item);
 
@@ -263,7 +266,7 @@ const Home = () => {
             <Input.TextArea
               placeholder="场景备注"
               {...scense_form_field.init('remark', {
-                rules: [{ required: true }],
+
               })}
             />
           </FormItem>
@@ -305,7 +308,7 @@ const Home = () => {
             label="场景备注"
             {...edit_scense_form_field.init('remark', {
               initValue: fp_get('data.remark')(show_edit_scense_dialog_state),
-              rules: [{ required: true }],
+
             })}
 
           >

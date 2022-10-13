@@ -5,6 +5,7 @@ import EmptyBlock from '@/components/EmptyBlcok';
 import { invoke_service } from '@/actions';
 import fp_filter from 'lodash/fp/filter';
 import fp_get from 'lodash/fp/get';
+import pageStore from '@/pages/Home/store';
 
 const FormItem = Form.Item;
 
@@ -24,6 +25,8 @@ function AssetsPannel() {
   const [select_rows_state, set_select_rows_state] = useState([]);
 
   const [show_edit_rule_dialog_state, set_show_edit_rule_dialog_state] = useState({ show: false, data: {} });
+
+  const [pageState, pageDispatchers] = pageStore.useModel('model');
 
 
   const field_form = Field.useField([]);
@@ -169,6 +172,8 @@ function AssetsPannel() {
         className={styles['table_box']}
         rowSelection={{
           onSelect(selected, record, records) {
+            const h = record;
+            debugger;
             async_update_rule(selected, record);
           },
           selectedRowKeys: select_rows_state,
