@@ -21,7 +21,7 @@ export const SCENSE_TABLE_NAME = 'scense_table_store'; // 场景表名称
 
 export const RULES_TABLE_NAME = 'rules_table_store'; // 场景表名称
 
-export const item_types = {
+export const proxy_types = {
   assets_proxy: 1,
   https_mock: 2,
   http_proxy: 3,

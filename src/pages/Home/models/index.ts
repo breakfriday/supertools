@@ -9,6 +9,7 @@ export default {
 
     },
     rules_list: [],
+    select_proxy_type: '',
 
   },
   reducers: {
@@ -38,6 +39,12 @@ export default {
       } catch (e) {
         console.error(e);
       }
+    },
+
+    set_proxy_type(type) {
+      dispatch.model.update({
+        select_proxy_type: type,
+      });
     },
 
   }),

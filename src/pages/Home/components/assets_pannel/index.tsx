@@ -185,13 +185,24 @@ function AssetsPannel() {
         }}
         emptyContent={<EmptyBlock />}
       >
-        <Table.Column title="前端资源" dataIndex="proxy_rule" />
+        <Table.Column
+          title="前端资源"
+          dataIndex="proxy_rule"
+          cell={(value, index, record) => {
+            return (
+              <div>
+                <span className={styles['alias_style']}>[ {fp_get('alias_name')(record)} ]</span>
+                <span>{value}</span>
+              </div>
+            );
+          }}
+        />
         <Table.Column title="本地服务" dataIndex="proxy_target" />
         <Table.Column
           title="操作"
           cell={(value, index, record) => {
             return (
-              <>
+              <div className={styles['operator_row']}>
                 <Button
                   className={styles['operator_button']}
                   type="secondary"
@@ -209,7 +220,7 @@ function AssetsPannel() {
                   }}
                 >删除
                 </Button>
-              </>
+              </div>
             );
           }}
         />
@@ -255,6 +266,17 @@ function AssetsPannel() {
               placeholder="https://localhost/${name}/js/index.js"
               {...field_form.init('proxy_target', {
                 rules: [{ required: true }],
+
+              })}
+            />
+          </FormItem>
+          <FormItem
+            label="别名"
+          >
+            <Input
+              name="alias_name"
+              placeholder="别名"
+              {...field_form.init('alias_name', {
 
               })}
             />
@@ -306,6 +328,18 @@ function AssetsPannel() {
               {...edit_field_form.init('proxy_target', {
                 initValue: fp_get('data.proxy_target')(show_edit_rule_dialog_state),
                 rules: [{ required: true }],
+
+              })}
+            />
+          </FormItem>
+          <FormItem
+            label="别名"
+          >
+            <Input
+              name="alias_name"
+              placeholder="别名"
+              {...edit_field_form.init('alias_name', {
+                initValue: fp_get('data.alias_name')(show_edit_rule_dialog_state),
 
               })}
             />
