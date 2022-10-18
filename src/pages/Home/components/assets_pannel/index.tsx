@@ -35,6 +35,8 @@ function AssetsPannel() {
 
   const select_scense_id = fp_get('select_scense.id')(pageState);
 
+  const select_proxy_type = fp_get('select_proxy_type')(pageState);
+
   const get_module_list = async () => {
     try {
       const data = pageState.rules_list;
@@ -90,7 +92,7 @@ function AssetsPannel() {
     }
 
     const id = fp_get('data.id')(show_edit_rule_dialog_state);
-    const data = Object.assign({}, form_data);
+    const data = Object.assign({}, { select_proxy_type }, form_data);
     try {
       const res = await invoke_service.update_rule({ id, data });
       pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id });
@@ -135,8 +137,9 @@ function AssetsPannel() {
       return false;
     }
 
+    const data = Object.assign({}, { select_proxy_type }, form_data);
     try {
-      const res = await invoke_service.add_rules_data({ rule_item: form_data, scense_id: select_scense_id });
+      const res = await invoke_service.add_rules_data({ rule_item: data, scense_id: select_scense_id });
       pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id });
       set_api_rule_dialog_state(false);
     } catch (e) {
