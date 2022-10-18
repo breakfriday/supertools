@@ -20,3 +20,12 @@ export const MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
 export const SCENSE_TABLE_NAME = 'scense_table_store'; // 场景表名称
 
 export const RULES_TABLE_NAME = 'rules_table_store'; // 场景表名称
+
+export const item_types = {
+  assets_proxy: 1,
+  https_mock: 2,
+  http_proxy: 3,
+  module_proxy: 4,
+  assets_inject: 5,
+  cookie_set: 5,
+};

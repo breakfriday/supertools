@@ -14,6 +14,19 @@
   .menu_box{
     border-right: 1px solid #e8e8e8;
 
+    :global{
+      .next-menu-item:not(.next-disabled):hover{
+        background-color:none;
+      }
+    }
+
+   
+
+    .selected_menu_item{
+     
+      background-color: rgba(32,155,250,0.2)!important;
+    } 
+    
     .menu_item{
       cursor: pointer;
       height: 45px;

@@ -164,7 +164,7 @@ const Home = () => {
                 return (
                   <Menu.Item
                     key={item.id}
-                    className={styles['menu_item']}
+                    className={`${styles['menu_item']} ${item.id === fp_get('select_scense.id')(pageState) ? styles['selected_menu_item'] : ''}`}
                     onClick={() => {
                       pageDispatchers.set_select_scense({ ...item });
                       pageDispatchers.get_rules_by_scense({ scense_id: item.id });
