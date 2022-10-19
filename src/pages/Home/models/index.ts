@@ -9,7 +9,7 @@ export default {
 
     },
     rules_list: [],
-    select_proxy_type: '',
+    select_proxy_type: 1,
 
   },
   reducers: {

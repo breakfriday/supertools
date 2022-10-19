@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Tab } from '@alifd/next';
+import fp_get from 'lodash/fp/get';
 
 import ServicePannel from '../service_pannel';
 import ModulePannel from '../module_pannel';
@@ -9,7 +10,8 @@ import { proxy_types } from '@/background/constant';
 
 function Pannel() {
   const [pageState, pageDispatchers] = pageStore.useModel('model');
-
+  const select_proxy_type = fp_get('select_proxy_type')(pageState);
+  const select_scense_id = fp_get('select_scense.id')(pageState);
 
   useEffect(() => {
     pageDispatchers.set_proxy_type(proxy_types.assets_proxy);
@@ -22,6 +24,9 @@ function Pannel() {
           key="3"
           onClick={() => {
             pageDispatchers.set_proxy_type(proxy_types.assets_proxy);
+
+
+            pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id, select_proxy_type: proxy_types.assets_proxy });
           }}
         >
           <AssetsPannel />
@@ -31,6 +36,8 @@ function Pannel() {
           key="2"
           onClick={() => {
             pageDispatchers.set_proxy_type(proxy_types.https_mock);
+
+            pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id, select_proxy_type: proxy_types.https_mock });
           }}
         >
           <ServicePannel />
@@ -40,6 +47,7 @@ function Pannel() {
           key="1"
           onClick={() => {
             pageDispatchers.set_proxy_type(proxy_types.http_proxy);
+            pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id, select_proxy_type: proxy_types.http_proxy });
           }}
         >
           <ServicePannel />

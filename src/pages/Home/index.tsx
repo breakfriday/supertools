@@ -36,6 +36,8 @@ const Home = () => {
 
   const [pageState, pageDispatchers] = pageStore.useModel('model');
 
+  const select_proxy_type = fp_get('select_proxy_type')(pageState);
+
 
   const add_scense = async () => {
     let form_data: any = {};
@@ -68,7 +70,7 @@ const Home = () => {
 
         pageDispatchers.set_select_scense({ ...temp_scense });
 
-        pageDispatchers.get_rules_by_scense({ scense_id });
+        pageDispatchers.get_rules_by_scense({ scense_id, select_proxy_type });
       }
     } catch (e) {
       console.log(e);
@@ -167,7 +169,8 @@ const Home = () => {
                     className={`${styles['menu_item']} ${item.id === fp_get('select_scense.id')(pageState) ? styles['selected_menu_item'] : ''}`}
                     onClick={() => {
                       pageDispatchers.set_select_scense({ ...item });
-                      pageDispatchers.get_rules_by_scense({ scense_id: item.id });
+
+                      pageDispatchers.get_rules_by_scense({ scense_id: item.id, select_proxy_type });
                     }}
 
                   >
