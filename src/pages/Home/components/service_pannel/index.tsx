@@ -1,11 +1,17 @@
 import react, { useEffect, useState } from 'react';
-import { Table, Button, Box, Dialog, Form, Input, Checkbox, Select, Field } from '@alifd/next';
+import { Table, Button, Box, Dialog, Form, Input, Checkbox, Select, Field, Icon, Drawer } from '@alifd/next';
 import styles from './index.module.scss';
 import EmptyBlock from '@/components/EmptyBlcok';
 import { invoke_service } from '@/actions';
 import fp_filter from 'lodash/fp/filter';
 import fp_get from 'lodash/fp/get';
 import pageStore from '@/pages/Home/store';
+
+import MonacoEditor from 'react-monaco-editor';
+
+const MyIcon = Icon.createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/c/font_3352826_ec87fk2az0r.js',
+});
 
 const FormItem = Form.Item;
 
@@ -23,6 +29,8 @@ function AssetsPannel() {
 
   const [module_list_state, set_module_list_state] = useState([]);
   const [select_rows_state, set_select_rows_state] = useState([]);
+
+  const [show_mock_data_state, set_show_mock_data_state] = useState({ show: false, data: {} });
 
   const [show_edit_rule_dialog_state, set_show_edit_rule_dialog_state] = useState({ show: false, data: {} });
 
@@ -95,7 +103,7 @@ function AssetsPannel() {
     const data = Object.assign({}, { select_proxy_type }, form_data);
     try {
       const res = await invoke_service.update_rule({ id, data });
-      pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id });
+      pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id, select_proxy_type });
       set_show_edit_rule_dialog_state({ show: false, data: {} });
     } catch (e) {
       console.log(e);
@@ -189,7 +197,7 @@ function AssetsPannel() {
         emptyContent={<EmptyBlock />}
       >
         <Table.Column
-          title="前端资源"
+          title="配置规则"
           dataIndex="proxy_rule"
           cell={(value, index, record) => {
             return (
@@ -200,7 +208,24 @@ function AssetsPannel() {
             );
           }}
         />
-        <Table.Column title="本地服务" dataIndex="proxy_target" />
+
+        <Table.Column
+          title="替换内容"
+          dataIndex="proxy_target"
+          cell={() => {
+            return (
+              <div className={styles['h1']}>
+                <MyIcon
+                  type="icon-editor"
+                  onClick={() => {
+                    set_show_mock_data_state({ show: true, data: {} });
+                  }}
+                />
+
+              </div>
+            );
+          }}
+        />
         <Table.Column
           title="操作"
           cell={(value, index, record) => {
@@ -247,7 +272,7 @@ function AssetsPannel() {
       >
         <Form field={field_form} {...formItemLayout} colon>
           <FormItem
-            label="前端资源"
+            label="配置规则"
             required
 
           >
@@ -261,17 +286,19 @@ function AssetsPannel() {
             />
           </FormItem>
           <FormItem
-            label="替换内容"
+            label="Mock数据"
             required
           >
-            <Input
-              name="proxy_target"
-              placeholder="https://localhost/${name}/js/index.js"
-              {...field_form.init('proxy_target', {
-                rules: [{ required: true }],
+            <div className={styles['h1']}>
+              <MyIcon
+                type="icon-editor"
+                onClick={() => {
+                  set_show_mock_data_state({ show: true, data: {} });
+                }}
+              />
 
-              })}
-            />
+            </div>
+
           </FormItem>
           <FormItem
             label="别名"
@@ -307,7 +334,7 @@ function AssetsPannel() {
       >
         <Form field={edit_field_form} {...formItemLayout} colon>
           <FormItem
-            label="前端资源"
+            label="配置规则"
             required
 
           >
@@ -322,18 +349,19 @@ function AssetsPannel() {
             />
           </FormItem>
           <FormItem
-            label="替换内容"
+            label="Mock数据"
             required
           >
-            <Input
-              name="proxy_target"
-              placeholder="https://localhost/${name}/js/index.js"
-              {...edit_field_form.init('proxy_target', {
-                initValue: fp_get('data.proxy_target')(show_edit_rule_dialog_state),
-                rules: [{ required: true }],
+            <div className={styles['h1']}>
+              <MyIcon
+                type="icon-editor"
+                onClick={() => {
+                  set_show_mock_data_state({ show: true, data: {} });
+                }}
+              />
 
-              })}
-            />
+            </div>
+
           </FormItem>
           <FormItem
             label="别名"
@@ -350,6 +378,25 @@ function AssetsPannel() {
 
         </Form>
       </Dialog>
+
+      <Drawer
+        title="mock 数据"
+        visible={show_mock_data_state.show}
+        placement={'right'}
+        width={800}
+        onClose={() => {
+          set_show_mock_data_state({ show: false, data: {} });
+        }}
+        bodyStyle={{ height: '100%' }}
+        className={styles.dr}
+      >
+        <div className={styles['drawer_content']} >
+          {/* <MonacoEditor
+            width="100%"
+            language="javascript"
+          /> */}
+        </div>
+      </Drawer>
     </div>
   );
 }
