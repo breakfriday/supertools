@@ -42,3 +42,25 @@
     position: relative;
 
 }
+
+.drawer_box{
+    .draw_title{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+
+    }
+    .draw_name{
+        display: flex;
+        flex: 1;
+    }
+    .draw_buttons{
+        display: flex;
+        flex-direction: row;
+
+    }
+    .b1{
+        margin-right: 8px;
+    }
+}

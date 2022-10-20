@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from 'react';
+import react, { useEffect, useState, useRef } from 'react';
 import { Table, Button, Box, Dialog, Form, Input, Checkbox, Select, Field, Icon, Drawer } from '@alifd/next';
 import styles from './index.module.scss';
 import EmptyBlock from '@/components/EmptyBlcok';
@@ -10,7 +10,7 @@ import pageStore from '@/pages/Home/store';
 import MonacoEditor from 'react-monaco-editor';
 
 const MyIcon = Icon.createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/c/font_3352826_ec87fk2az0r.js',
+  scriptUrl: '//at.alicdn.com/t/c/font_3352826_51vaj7ot10u.js',
 });
 
 const FormItem = Form.Item;
@@ -44,6 +44,8 @@ function AssetsPannel() {
   const select_scense_id = fp_get('select_scense.id')(pageState);
 
   const select_proxy_type = fp_get('select_proxy_type')(pageState);
+
+  const editor_ref = useRef();
 
   const get_module_list = async () => {
     try {
@@ -175,6 +177,33 @@ function AssetsPannel() {
     '}',
   ].join('\n');
 
+  const drawer_title = (
+    <div className={styles['draw_title']}>
+      <div className={styles['draw_name']}>MOCK 数据</div>
+      <div className={styles['draw_buttons']}>
+        <Button
+          type="secondary"
+          className={styles['b1']}
+          onClick={() => {
+            set_show_mock_data_state({ show: false, data: {} });
+          }}
+        >取消
+        </Button>
+        <Button
+          type="secondary"
+          onClick={() => {
+            const model = editor_ref?.current?.editor?.getModel();
+            const value = model.getValue();
+
+            debugger
+            // set_show_mock_data_state({ show: false, data: {} });
+          }}
+        >确定
+        </Button>
+      </div>
+    </div>
+  );
+
   return (
     <div className={styles.box_pannel}>
       <div className={styles['button_title']} >
@@ -297,7 +326,7 @@ function AssetsPannel() {
           >
             <div className={styles['h1']}>
               <MyIcon
-                type="icon-editor"
+                type="icon-editor" 
                 onClick={() => {
                   set_show_mock_data_state({ show: true, data: {} });
                 }}
@@ -386,7 +415,7 @@ function AssetsPannel() {
       </Dialog>
 
       <Drawer
-        title="mock 数据"
+        title={drawer_title}
         visible={show_mock_data_state.show}
         placement={'right'}
         width={900}
@@ -394,7 +423,7 @@ function AssetsPannel() {
           set_show_mock_data_state({ show: false, data: {} });
         }}
         bodyStyle={{ height: '100%' }}
-        className={styles.dr}
+        className={styles['drawer_box']}
       >
         <div className={styles['drawer_content']} >
           <MonacoEditor
@@ -402,6 +431,7 @@ function AssetsPannel() {
             height="100%"
             language="json"
             value={jsCode}
+            ref={editor_ref}
             options={
               {
                 selectOnLineNumbers: true,
