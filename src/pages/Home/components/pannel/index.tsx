@@ -6,6 +6,7 @@ import ServicePannel from '../service_pannel';
 import ModulePannel from '../module_pannel';
 import AssetsPannel from '../assets_pannel';
 import pageStore from '@/pages/Home/store';
+import HttpPannel from '../http_proxy_pannel';
 import { proxy_types } from '@/background/constant';
 
 function Pannel() {
@@ -50,7 +51,7 @@ function Pannel() {
             pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id, select_proxy_type: proxy_types.http_proxy });
           }}
         >
-          <ServicePannel />
+          <HttpPannel />
         </Tab.Item>
         {/* <Tab.Item title="模块组件代理" key="4" >
           <ModulePannel />

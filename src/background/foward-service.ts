@@ -77,7 +77,8 @@ class ForwardService {
 
 
     this._lastRequestId = details.requestId;
-    return redirectUrl === details.url ? {} : { redirectUrl };
+    const data = redirectUrl === details.url ? {} : { redirectUrl };
+    return data;
   }
 
   onBeforeRequestCallback(

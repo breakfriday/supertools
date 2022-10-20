@@ -1,0 +1,26 @@
+.box_pannel{
+  
+    padding: 0px 20px ;
+    .table_box{
+        margin-top: 20px;
+     
+    }
+
+    .button_title{
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        margin-top: 20px;
+    }
+
+    .operator_button{
+        margin-right: 8px;
+    }
+    .operator_row{
+        display: flex;
+    }
+    .alias_style{
+        font-weight: 700;
+        margin-right: 10px;
+    }
+}
