@@ -63,7 +63,7 @@ function AssetsPannel() {
 
       const res = await invoke_service.update_rule({ id: record.id, data });
       // get_module_list();
-      pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id });
+      pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id, select_proxy_type });
     } catch (e) {
       console.log(e);
     }
@@ -95,7 +95,7 @@ function AssetsPannel() {
     const data = Object.assign({}, { select_proxy_type }, form_data);
     try {
       const res = await invoke_service.update_rule({ id, data });
-      pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id });
+      pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id, select_proxy_type });
       set_show_edit_rule_dialog_state({ show: false, data: {} });
     } catch (e) {
       console.log(e);
@@ -105,7 +105,7 @@ function AssetsPannel() {
   const async_delete_rule = async (parm) => {
     try {
       const res = await invoke_service.delete_rule(parm);
-      pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id });
+      pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id, select_proxy_type });
     } catch (e) {
       console.log(e);
     }
@@ -140,7 +140,7 @@ function AssetsPannel() {
     const data = Object.assign({}, { select_proxy_type }, form_data);
     try {
       const res = await invoke_service.add_rules_data({ rule_item: data, scense_id: select_scense_id });
-      pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id });
+      pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id, select_proxy_type });
       set_api_rule_dialog_state(false);
     } catch (e) {
       console.log(e);
