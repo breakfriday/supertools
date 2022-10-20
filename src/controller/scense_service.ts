@@ -215,6 +215,12 @@ class ScenseService extends db_service {
       return [it.proxy_rule, it];
     })(effect_data);
     const effect_data_map = new Map(effect_data_array);
+
+
+    window._forward.config = {
+      proxy: effect_data_map,
+    };
+
     return { effect_data_map };
   }
 }

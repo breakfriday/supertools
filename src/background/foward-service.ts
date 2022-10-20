@@ -67,9 +67,9 @@ class ForwardService {
         if (details.requestId !== this._lastRequestId) {
           if (matched === UrlType.REG) {
             const r = new RegExp(rule.replace('??', '\\?\\?'), 'i');
-            redirectUrl = redirectUrl.replace(r, value);
+            redirectUrl = redirectUrl.replace(r, value.proxy_target);
           } else if (matched === UrlType.STRING) {
-            redirectUrl = redirectUrl.split(rule).join(value);
+            redirectUrl = redirectUrl.split(rule).join(value.proxy_target);
           }
         }
       }
