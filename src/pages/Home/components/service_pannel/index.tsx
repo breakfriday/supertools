@@ -10,7 +10,7 @@ import pageStore from '@/pages/Home/store';
 import MonacoEditor from 'react-monaco-editor';
 
 const MyIcon = Icon.createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/c/font_3352826_51vaj7ot10u.js',
+  scriptUrl: 'https://at.alicdn.com/t/c/font_3352826_51vaj7ot10u.js',
 });
 
 const FormItem = Form.Item;
@@ -265,8 +265,8 @@ function AssetsPannel() {
           cell={(value, index, record) => {
             return (
               <div className={styles['h1']}>
-                <MyIcon
-                  type="icon-editor"
+                <Icon
+                  type="edit"
                   onClick={() => {
                     set_show_mock_data_state({ show: true, data: { id: fp_get('id')(record), mock_data: fp_get('mock_data')(record) } });
                   }}
@@ -340,8 +340,8 @@ function AssetsPannel() {
             required
           >
             <div className={styles['h1']}>
-              <MyIcon
-                type="icon-editor"
+              <Icon
+                type="edit"
                 onClick={() => {
                   set_show_mock_data_state({ show: true, data: {} });
                 }}
@@ -403,8 +403,8 @@ function AssetsPannel() {
             required
           >
             <div className={styles['h1']}>
-              <MyIcon
-                type="icon-editor"
+              <Icon
+                type="edit"
                 onClick={() => {
                   set_show_mock_data_state({ show: true, data: {} });
                 }}
