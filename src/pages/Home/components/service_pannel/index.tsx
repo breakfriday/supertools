@@ -112,6 +112,21 @@ function AssetsPannel() {
     }
   };
 
+  const async_update_rule_data_mock = async (parm) => {
+    const { mock_data } = parm;
+
+
+    const id = fp_get('data.id')(show_mock_data_state);
+    const data = Object.assign({}, { select_proxy_type }, { mock_data });
+    try {
+      const res = await invoke_service.update_rule({ id, data });
+      pageDispatchers.get_rules_by_scense({ scense_id: select_scense_id, select_proxy_type });
+      set_show_mock_data_state({ show: false, data: {} });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const async_delete_rule = async (parm) => {
     try {
       const res = await invoke_service.delete_rule(parm);
@@ -194,8 +209,8 @@ function AssetsPannel() {
           onClick={() => {
             const model = editor_ref?.current?.editor?.getModel();
             const value = model.getValue();
+            async_update_rule_data_mock({ mock_data: value });
 
-            debugger
             // set_show_mock_data_state({ show: false, data: {} });
           }}
         >确定
@@ -247,13 +262,13 @@ function AssetsPannel() {
         <Table.Column
           title="替换内容"
           dataIndex="proxy_target"
-          cell={() => {
+          cell={(value, index, record) => {
             return (
               <div className={styles['h1']}>
                 <MyIcon
                   type="icon-editor"
                   onClick={() => {
-                    set_show_mock_data_state({ show: true, data: {} });
+                    set_show_mock_data_state({ show: true, data: { id: fp_get('id')(record), mock_data: fp_get('mock_data')(record) } });
                   }}
                 />
 
@@ -326,7 +341,7 @@ function AssetsPannel() {
           >
             <div className={styles['h1']}>
               <MyIcon
-                type="icon-editor" 
+                type="icon-editor"
                 onClick={() => {
                   set_show_mock_data_state({ show: true, data: {} });
                 }}
@@ -430,7 +445,7 @@ function AssetsPannel() {
             width="100%"
             height="100%"
             language="json"
-            value={jsCode}
+            value={show_mock_data_state.data.mock_data}
             ref={editor_ref}
             options={
               {
