@@ -383,7 +383,7 @@ function AssetsPannel() {
         title="mock 数据"
         visible={show_mock_data_state.show}
         placement={'right'}
-        width={800}
+        width={900}
         onClose={() => {
           set_show_mock_data_state({ show: false, data: {} });
         }}
@@ -391,10 +391,24 @@ function AssetsPannel() {
         className={styles.dr}
       >
         <div className={styles['drawer_content']} >
-          {/* <MonacoEditor
+          <MonacoEditor
             width="100%"
-            language="javascript"
-          /> */}
+            height="100%"
+            language="json"
+            options={
+              {
+                selectOnLineNumbers: true,
+                foldingStrategy: 'indentation', // 代码可分小段折叠
+                automaticLayout: true, // 自适应布局
+                overviewRulerBorder: false, // 不要滚动条的边框
+                minimap: {
+                  enabled: false, // 不要小地图
+                },
+
+              }
+            }
+
+          />
         </div>
       </Drawer>
     </div>

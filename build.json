@@ -67,6 +67,14 @@
           "libraryName": "@alifd/next"
         }
       ]
-    ]
+    ],
+    "webpackPlugins": {
+      "monaco-editor-webpack-plugin": {
+        "options": {
+          "identifier": "module1",
+          "languages": ["json"]
+        }
+      }
+    }
   }
   

@@ -41,6 +41,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "monaco-editor": "^0.34.1",
+    "monaco-editor-webpack-plugin": "^7.0.1",
     "prop-types": "^15.5.8",
     "qs": "^6.10.3",
     "react": "^17.0.2",
