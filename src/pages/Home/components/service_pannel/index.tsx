@@ -169,6 +169,12 @@ function AssetsPannel() {
     // });
   };
 
+  const jsCode = [
+    '{',
+    '   "data": {}',
+    '}',
+  ].join('\n');
+
   return (
     <div className={styles.box_pannel}>
       <div className={styles['button_title']} >
@@ -395,6 +401,7 @@ function AssetsPannel() {
             width="100%"
             height="100%"
             language="json"
+            value={jsCode}
             options={
               {
                 selectOnLineNumbers: true,
