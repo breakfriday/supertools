@@ -56,7 +56,7 @@ function Pannel() {
         {/* <Tab.Item title="模块组件代理" key="4" >
           <ModulePannel />
         </Tab.Item> */}
-        <Tab.Item
+        {/* <Tab.Item
           title="资源注入"
           key="5"
           onClick={() => {
@@ -64,15 +64,15 @@ function Pannel() {
           }}
         >
           <ModulePannel />
-        </Tab.Item>
+        </Tab.Item> */}
         <Tab.Item
-          title="COOKIE注入"
+          title="COOKIE"
           key="6"
           onClick={() => {
             pageDispatchers.set_proxy_type(proxy_types.cookie_set);
           }}
         >
-          <ModulePannel />
+          <div />
         </Tab.Item>
       </Tab>
     </div>

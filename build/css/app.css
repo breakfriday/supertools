@@ -43037,41 +43037,6 @@ body {
 
 
 /* write style here */
-.module_pannel--next-icestark-sr-only--MP4xo07 {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-  top: 0;
-  margin: -1px;
-}
-
-.module_pannel--box_pannel--OhrBpOV {
-  padding: 0px 20px;
-}
-.module_pannel--box_pannel--OhrBpOV .module_pannel--table_box--Ah5Q3ne {
-  margin-top: 20px;
-}
-.module_pannel--box_pannel--OhrBpOV .module_pannel--button_title--VGwtyTR {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: right;
-  -webkit-justify-content: right;
-      -ms-flex-pack: right;
-          justify-content: right;
-  margin-top: 20px;
-}
 .assets_pannel--next-icestark-sr-only--H83JGdE {
   position: absolute;
   width: 1px;
