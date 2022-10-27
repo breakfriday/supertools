@@ -30,6 +30,10 @@ const asideMenuConfig = [
     path: '/',
     icon: '',
     children: [
+      {
+        name: 'rrweb_start',
+        path: '/remote',
+      },
     ],
   },
   {

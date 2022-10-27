@@ -42,7 +42,9 @@ class ScenseService extends db_service {
 
   update_scense(parm) {
     const { id, data } = parm;
-    return this.updateData_by_read(SCENSE_TABLE_NAME, id, data);
+    return this.updateData_by_read(SCENSE_TABLE_NAME, id, data).then(() => {
+      this.get_effect_rules();
+    });
   }
 
   update_rule(parm) {
