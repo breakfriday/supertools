@@ -29,3 +29,11 @@ export const proxy_types = {
   assets_inject: 5,
   cookie_set: 5,
 };
+
+
+export const CORS = {
+  METHODS: 'access-control-allow-methods',
+  CREDENTIALS: 'access-control-allow-credentials',
+  ORIGIN: 'access-control-allow-origin',
+  HEADERS: 'access-control-allow-headers',
+};

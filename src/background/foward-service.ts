@@ -2,6 +2,8 @@
 
 import { REGEXP_LIST } from './constant';
 
+// import atob from 'atob';
+
 export enum UrlType {
   REG = 'reg',
   STRING = 'string',
@@ -67,7 +69,36 @@ class ForwardService {
         if (details.requestId !== this._lastRequestId) {
           if (matched === UrlType.REG) {
             const r = new RegExp(rule.replace('??', '\\?\\?'), 'i');
-            redirectUrl = redirectUrl.replace(r, value.proxy_target);
+
+            const data = { success: true,
+              result: { total: 11,
+                data: [{
+                  id: 11,
+                  chartId: null,
+                  messageId: null,
+                  replyType: 'NO_ANSWER',
+                  replyTypeName: 'no',
+                  reply: null,
+                  question: '',
+                  knowledgeId: null,
+                  knowledgeTitle: null,
+                  knowledgeLibraryTitle: null,
+                  knowledgeCategoryName: null,
+                  rmodifiedTime: 1666265766000,
+                }],
+                pageNo: 1,
+                pageSize: 10,
+                endRow: null },
+              code: null,
+              message: null };
+            if (value.select_proxy_type === 2) {
+              const { mock_data } = value;
+              redirectUrl = `data:application/json;base64,${window.btoa(JSON.stringify(JSON.parse(mock_data)))}`;
+            } else {
+              redirectUrl = redirectUrl.replace(r, value.proxy_target);
+            }
+
+            // redirectUrl = redirectUrl.replace(r, value.proxy_target);
           } else if (matched === UrlType.STRING) {
             redirectUrl = redirectUrl.split(rule).join(value.proxy_target);
           }

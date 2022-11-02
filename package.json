@@ -34,6 +34,7 @@
     "@alifd/theme-6535": "^0.7.4",
     "@alifd/theme-design-pro": "0.x",
     "ahooks": "^3.x.x",
+    "atob": "^2.1.2",
     "axios": "^0.27.1",
     "classnames": "^2.2.5",
     "events": "3.3.0",
