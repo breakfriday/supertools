@@ -65,8 +65,10 @@ class ForwardService {
     }
 
 
-    for (const [rule, value] of rules) {
-      if (typeof rule === 'string') {
+    for (const [rule_0, value] of rules) {
+      if (typeof rule_0 === 'string') {
+        const rule = rule_0.replace(/(^\s*)|(\s*$)/g, '');
+
         const matched = matchUrl(redirectUrl, rule);
         if (details.requestId !== this._lastRequestId) {
           if (matched === UrlType.REG) {
