@@ -2,6 +2,8 @@
 
 import { REGEXP_LIST } from './constant';
 
+import { Base64, encode, decode } from 'js-base64';
+
 // import atob from 'atob';
 
 export enum UrlType {
@@ -70,30 +72,21 @@ class ForwardService {
           if (matched === UrlType.REG) {
             const r = new RegExp(rule.replace('??', '\\?\\?'), 'i');
 
-            const data = { success: true,
-              result: { total: 11,
-                data: [{
-                  id: 11,
-                  chartId: null,
-                  messageId: null,
-                  replyType: 'NO_ANSWER',
-                  replyTypeName: 'no',
-                  reply: null,
-                  question: '',
-                  knowledgeId: null,
-                  knowledgeTitle: null,
-                  knowledgeLibraryTitle: null,
-                  knowledgeCategoryName: null,
-                  rmodifiedTime: 1666265766000,
-                }],
-                pageNo: 1,
-                pageSize: 10,
-                endRow: null },
+            const mock_default_data = { success: false,
+              result: {
+                data: ['后来'],
+              },
               code: null,
-              message: null };
+              message: 'mock_data_none' };
             if (value.select_proxy_type === 2) {
               const { mock_data } = value;
-              redirectUrl = `data:application/json;base64,${window.btoa(JSON.stringify(JSON.parse(mock_data)))}`;
+              try {
+                const base64Str = encode(JSON.stringify(JSON.parse(mock_data)));
+                redirectUrl = `data:application/json;base64,${base64Str}`;
+              } catch (e) {
+                const base64Str = encode(JSON.stringify(mock_default_data));
+                redirectUrl = `data:application/json;base64,${base64Str}`;
+              }
             } else {
               redirectUrl = redirectUrl.replace(r, value.proxy_target);
             }

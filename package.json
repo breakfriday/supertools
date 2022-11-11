@@ -39,6 +39,7 @@
     "classnames": "^2.2.5",
     "events": "3.3.0",
     "hooks": "^0.3.2",
+    "js-base64": "^3.7.2",
     "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "monaco-editor": "^0.34.1",
