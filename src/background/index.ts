@@ -1,5 +1,5 @@
 import forward from './foward-service';
-import { ALL_URLS, BLOCKING, DISABLED } from './constant';
+import { ALL_URLS, BLOCKING, DISABLED, REQUEST_HEADERS } from './constant';
 import ScenseService from '@/controller/scense_service';
 
 import { Enabled } from './esum';
@@ -62,11 +62,13 @@ chrome.webRequest.onBeforeRequest.addListener(
 // }, ['blocking', 'responseHeaders', 'extraHeaders']);
 
 
-// chrome.webRequest.onBeforeSendHeaders.addListener(
-//   (details) => forward.onBeforeSendHeadersCallback(details),
-//   { urls: [ALL_URLS] },
-//   [BLOCKING, REQUEST_HEADERS],
-// );
+chrome.webRequest.onBeforeSendHeaders.addListener(
+  (details) => {
+    console.log('=======');
+  },
+  { urls: [ALL_URLS] },
+  [BLOCKING, REQUEST_HEADERS],
+);
 
 window.pro_test = () => {
   console.log('this is the test');

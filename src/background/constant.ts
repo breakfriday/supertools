@@ -12,6 +12,7 @@ export const REGEXP_LIST = {
 export const ALL_URLS = '<all_urls>';
 
 export const BLOCKING = 'blocking';
+export const REQUEST_HEADERS = 'requestHeaders';
 
 export const DISABLED = 'disabled';
 
@@ -37,3 +38,9 @@ export const CORS = {
   ORIGIN: 'access-control-allow-origin',
   HEADERS: 'access-control-allow-headers',
 };
+
+export const ACCESS_CONTROL_REQUEST_HEADERS = 'access-control-request-headers';
+export const DEFAULT_CORS_ORIGIN = '*';
+export const DEFAULT_CORS_METHODS = '*';
+export const DEFAULT_CORS_CREDENTIALS = 'true';
+export const ORIGIN = 'origin';
