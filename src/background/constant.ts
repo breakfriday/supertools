@@ -13,6 +13,7 @@ export const ALL_URLS = '<all_urls>';
 
 export const BLOCKING = 'blocking';
 export const REQUEST_HEADERS = 'requestHeaders';
+export const REQUEST_BODY = 'requestBody';
 
 export const DISABLED = 'disabled';
 

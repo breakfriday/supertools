@@ -1,5 +1,5 @@
 import forward from './foward-service';
-import { ALL_URLS, BLOCKING, DISABLED, REQUEST_HEADERS } from './constant';
+import { ALL_URLS, BLOCKING, DISABLED, REQUEST_HEADERS, REQUEST_BODY } from './constant';
 import ScenseService from '@/controller/scense_service';
 
 import { Enabled } from './esum';
@@ -38,7 +38,7 @@ chrome.webRequest.onBeforeRequest.addListener(
   {
     urls: [ALL_URLS],
   },
-  [BLOCKING],
+  [BLOCKING, REQUEST_BODY],
 );
 
 
@@ -62,13 +62,26 @@ chrome.webRequest.onBeforeRequest.addListener(
 // }, ['blocking', 'responseHeaders', 'extraHeaders']);
 
 
-chrome.webRequest.onBeforeSendHeaders.addListener(
-  (details) => {
-    console.log('=======');
-  },
-  { urls: [ALL_URLS] },
-  [BLOCKING, REQUEST_HEADERS],
-);
+// chrome.webRequest.onBeforeSendHeaders.addListener(
+//   (details) => {
+//     console.log('=======');
+//   },
+//   { urls: [ALL_URLS] },
+//   [BLOCKING, REQUEST_HEADERS, 'requestBody'],
+// );
+
+// chrome.webRequest.onBeforeRequest.addListener(
+//   (details) => {
+//     // 获取 POST 请求参数
+//     if (details.method === 'POST') {
+//       const postParams = details.requestBody.formData;
+//       console.log(postParams);
+//     }
+//   },
+//   { urls: [''] }, // 监听所有 URL
+//   ['requestBody'], // 请求体中的参数
+// );
+
 
 window.pro_test = () => {
   console.log('this is the test');

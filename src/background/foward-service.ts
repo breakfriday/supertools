@@ -3,6 +3,7 @@
 import { REGEXP_LIST } from './constant';
 
 import { Base64, encode, decode } from 'js-base64';
+import fpget from 'lodash/fp/get';
 
 // import atob from 'atob';
 
@@ -49,6 +50,8 @@ class ForwardService {
     details: chrome.webRequest.WebRequestHeadersDetails,
   ): chrome.webRequest.BlockingResponse {
     const rules = this.config.proxy;
+    const http_method = fpget('method')(details);
+
     let redirectUrl: string = details.url;
 
     // in case of chrome-extension downtime
