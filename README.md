@@ -32,3 +32,5 @@ window._forward.config = {
   ]),
 };
 ```
+### 帮助文档
+帮助文档： https://www.yuque.com/luoxuan-nir7u/mdzc63/xcb176ahlhis78w4?singleDoc# 《supertools》
