@@ -32,5 +32,11 @@ window._forward.config = {
   ]),
 };
 ```
+
+## 📺 Screenshot
+<p align="center">
+    <img src="docs/static/screenshot-realtime.png" alt="" />
+</p>
+
 ### 帮助文档
 帮助文档： https://www.yuque.com/luoxuan-nir7u/mdzc63/xcb176ahlhis78w4?singleDoc# 《supertools》
