@@ -34,6 +34,7 @@ window._forward.config = {
 ```
 
 ## 📺 Screenshot
+<p>assets 代理</p>
 <p align="center">
     <img src="images/t1.png" alt="" />
 </p>
@@ -41,8 +42,18 @@ window._forward.config = {
     <img src="images/t2.png" alt="" />
 </p>
 
+<p> 接口 代理</p>
 <p align="center">
     <img src="images/t3.png" alt="" />
 </p>
+
+<p> 本地mock 代理</p>
+<p align="center">
+    <img src="images/t4.png" alt="" />
+</p>
+<p align="center">
+    <img src="images/t5.png" alt="" />
+</p>
+
 ### 帮助文档
 帮助文档： https://www.yuque.com/luoxuan-nir7u/mdzc63/xcb176ahlhis78w4?singleDoc# 《supertools》
